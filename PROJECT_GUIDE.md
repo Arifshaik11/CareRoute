@@ -188,3 +188,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 |---|---|---|---|---|---|---|
 | MAT_SEVERE_BP | Pregnancy: severely raised BP | Maternal | Systolic >= 160 OR Diastolic >= 110 | Refer | Critical | 12 hours |
 | MAT_HIGH_BP | Pregnancy: raised BP | Maternal | Systolic >= 140 OR Diastolic >= 90 | Refer | High | 48 hours |
+| MAT_DANGER_SIGNS | Pregnancy: danger sign | Maternal | Symptoms include severe headache, blurred vision, bleeding, or reduced fetal movement | Refer | Critical | 12 hours |
+| MAT_THIRD_TRIMESTER | Pregnancy: third-trimester visit | Maternal | Pregnancy weeks >= 28 | Follow up | Medium | 336 hours (2 weeks) |
+| TB_MISSED_DOSE | TB: missed dose | TB | Dose taken = false | Follow up | High | 24 hours |
+| TB_WARNING_SYMPTOMS | TB: warning symptoms | TB | Symptoms include hemoptysis or breathlessness | Refer | High | 48 hours |
+| ANY_HIGH_FEVER | High fever | All | Temperature >= 39.0 C | Refer | High | 24 hours |
+| CHILD_FEVER | Child: fever | Child health | Temperature >= 38.0 C | Follow up | High | 24 hours |
+| NCD_HIGH_BP | NCD: raised BP | NCD | Systolic >= 160 OR Diastolic >= 100 | Refer | Medium | 72 hours |
+
+---
+
