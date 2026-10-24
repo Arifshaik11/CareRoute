@@ -328,3 +328,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 8. After saving, the visit outcome screen shows what rules fired
 
 **What happened:** A new patient was created in the database, assigned to your village and to you as the ASHA. The first visit immediately runs through the rules engine.
+
+---
+
+### Scenario 6: Supervisor creates a new rule
+
+**Goal:** See how the supervisor configures the rules that drive the system.
+
+1. Log in as **supervisor.anil**
+2. Click **"Rules"** in the sidebar
+3. You'll see all 9 starter rules as cards, each showing:
