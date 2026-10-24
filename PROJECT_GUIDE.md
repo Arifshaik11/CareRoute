@@ -348,3 +348,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 5. Fill in:
    - Name: e.g., "Maternal: low weight"
    - Code: MAT_LOW_WEIGHT (auto-uppercased)
+   - Applies to: Maternal care
+   - Priority: Medium
+6. Under **Condition**:
+   - Match mode: "Any clause" (OR) or "All clauses" (AND)
+   - First clause: Field = Weight (kg), Operator = <=, Value = 45
+   - Click "Add clause" to add more if needed
+7. Under the next card:
+   - Then: "Add a follow-up visit for the ASHA" (FOLLOW_UP)
+   - Within (hours): 72
+   - Explanation: "Weight recorded as {WEIGHT_KG} kg, below 45 kg. Schedule nutrition counselling visit within 3 days."
