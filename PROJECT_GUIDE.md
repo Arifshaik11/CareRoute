@@ -228,3 +228,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 ---
 
 ### Scenario 2: ASHA records a high BP visit (referral triggered)
+
+**Goal:** See how abnormal readings trigger a referral to the PHC. This is the key scenario with the demo patient Lakshmi Devi.
+
+1. Log in as **Sunitha K** (ASHA)
+2. On the Due List, look for **Lakshmi Devi** (24 y, Maternal care, Ramapuram). She's specifically seeded with a follow-up due in about 4 hours, so she should appear in "Due today" or "Upcoming"
+3. Click her name to open her patient detail page
+4. Click **"Record visit"**
+5. Enter raised blood pressure:
+   - BP: **145** / **92** (above the 140/90 threshold for MAT_HIGH_BP rule)
+   - Temperature: **36.8**
