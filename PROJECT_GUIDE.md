@@ -468,3 +468,13 @@ Lakshmi Devi is a specifically seeded patient designed for live demos:
 **Screening, not diagnosis.** The app includes a screening notice on visit forms and patient pages: this is screening information, not a clinical diagnosis. The rules are illustrative screening thresholds for a prototype.
 
 ---
+
+## API Reference (for testing with curl or Postman)
+
+Base URL: `http://localhost:8080/api`
+
+| Endpoint | Method | Auth | Purpose |
+|---|---|---|---|
+| `/auth/login` | POST | None | Login (returns JWT) |
+| `/auth/me` | GET | Any | Get current user |
+| `/meta` | GET | Any | Reference data (programs, symptoms, condition fields) |
