@@ -1,1 +1,3 @@
 # Local PostgreSQL for development. Start with:  docker compose up -d
+services:
+  postgres:
