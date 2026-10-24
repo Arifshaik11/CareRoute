@@ -16,3 +16,14 @@ CareRoute is a field-first digital health platform designed to support community
 - **Childvillas** - [aichidvilas7@gmail.com](mailto:aichidvilas7@gmail.com)
 - **Syed Simal** - [simal1042006@gmail.com](mailto:simal1042006@gmail.com)
 - **harsha vardan** - [lovelyharsha8639@gmail.com](mailto:lovelyharsha8639@gmail.com)
+
+---
+
+## How to Run the Project
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/) and Docker Compose
+- [Java 21](https://adoptium.net/)
+- [Maven 3.9+](https://maven.apache.org/)
+- [Node.js 20+](https://nodejs.org/) and npm
