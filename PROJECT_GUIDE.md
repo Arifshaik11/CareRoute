@@ -138,3 +138,13 @@ If a referral is in REFERRED status, they also see a "Patient already here" butt
                          └──────────┬──────────────────────┬────────────────┘
                                     │                      │
                           FOLLOW_UP rule              REFERRAL rule
+                                    │                      │
+                                    ▼                      ▼
+                        ┌──────────────────┐   ┌──────────────────────┐
+                        │  Task added to    │   │  Referral sent to    │
+                        │  ASHA's due list  │   │  the PHC             │
+                        └──────────────────┘   └──────────┬───────────┘
+                                                            │
+                                                  PHC staff sees it
+                                                            │
+                                       ┌────────────────────┼────────────────────┐
