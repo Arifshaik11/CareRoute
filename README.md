@@ -130,3 +130,11 @@ CareRoute follows a standard **three-tier web architecture** with clear separati
 | `demo`      | Demo data seeding and reset endpoints                               |
 | `location`  | Village and facility reference data                                 |
 | `user`      | App user management and roles (ASHA, SUPERVISOR, ADMIN)             |
+
+### Frontend Pages
+
+| Role       | Pages                                              |
+|------------|----------------------------------------------------|
+| ASHA       | Due List, Register Patient, Record Visit           |
+| Supervisor | Dashboard, Patients, Referrals, Rules, Rule Editor |
+| Shared     | Login, Patient Detail, Referral Detail             |
