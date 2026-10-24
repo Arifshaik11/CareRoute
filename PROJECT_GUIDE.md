@@ -42,3 +42,14 @@ The login page shows three quick-login buttons for Sunitha (ASHA), Dr. Kiran (PH
 **Sidebar / navigation:**
 - **Due list** - prioritised tasks (overdue, due today, upcoming)
 - **Patients** - patients assigned to them in their village
+- **Referrals** - referrals for their patients (read-only, to track status)
+
+**What they can do:**
+- See a prioritised due list with three sections: Overdue, Due today, Upcoming
+- Each task card shows the patient name, program, priority, why the task exists (which rule fired), and when it's due
+- Click "Record visit" on any task to go to the visit recording form
+- Click "Mark done" to complete a follow-up without recording a visit
+- Register a new patient (name, age, sex, program, phone, consent required)
+- Record a home visit with observations: blood pressure, temperature, weight, pregnancy weeks, TB dose, symptoms, notes
+- After saving a visit, see what the rules engine decided (follow-up created? referral sent?)
+- View patient detail pages with visit history, open tasks, and referral timelines
