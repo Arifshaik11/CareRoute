@@ -258,3 +258,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 ### Scenario 3: PHC staff processes the referral (full loop)
 
 **Goal:** See how PHC staff receive and work through a referral that an ASHA just created.
+
+1. Log in as **Dr. Kiran V** (PHC staff) - you'll land on the **Referrals** page
+2. You'll see tabs: **Awaiting arrival** (count), **Escalated**, **Arrived**, **Closed**, **All**
+3. The referral from Scenario 2 (Lakshmi Devi) should appear under "Awaiting arrival" with status **Referred** and priority **High**
+4. Click on the referral to open its detail page
+5. You'll see:
+   - Patient name, age, program, village, ASHA name
+   - The reason the referral was created (BP threshold exceeded)
+   - Referred timestamp and expected-by deadline
+   - A **timeline** on the right showing the "Referred" event
