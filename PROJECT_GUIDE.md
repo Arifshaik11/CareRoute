@@ -218,3 +218,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
    - Don't check any symptoms
 8. Click **"Save visit"**
 9. You'll see the **Visit saved** screen showing:
+   - "Next visit scheduled" (because MAT_THIRD_TRIMESTER rule fired if weeks >= 28)
+   - Under "Why": the rule name, its explanation, and the outcome "Follow-up added to due list"
+   - A note about the next due date
+10. Click **"Back to due list"** - the new follow-up task will appear in your list
+
+**What happened behind the scenes:** The CarePlanService saved the visit, completed any pending follow-ups, ran all active rules, and the MAT_THIRD_TRIMESTER rule (if applicable) created a new medium-priority follow-up due in 2 weeks.
+
+---
+
+### Scenario 2: ASHA records a high BP visit (referral triggered)
