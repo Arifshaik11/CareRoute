@@ -298,3 +298,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
    - The **referral funnel** will show the gap (patients referred but not arrived)
    - The **"Active escalations"** section (bottom left) will list the escalated referral
 7. Log out and log back in as **Sunitha K** (ASHA)
+8. Go to your **Due List** - you'll see a new **CRITICAL** priority task:
+   - A red "Missed referral" badge
+   - The reason says: "Referral to Ramapuram PHC is overdue and the patient has not arrived. Visit today and help them reach the facility."
+   - This task appeared because the referral escalated back to the ASHA
+9. Click on the patient to see the referral with an "Escalated" badge
+
+**What happened:** When a referral passes its deadline without the patient arriving at the PHC, the ReferralService.escalateOverdue() method fires. It marks the referral as escalated and creates a CRITICAL priority follow-up on the ASHA's due list, closing the loop back to the village.
+
+---
+
