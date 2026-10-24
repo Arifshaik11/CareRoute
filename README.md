@@ -112,3 +112,21 @@ CareRoute follows a standard **three-tier web architecture** with clear separati
 │                  (Docker · persistent volume)               │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+### Backend Modules
+
+| Module      | Responsibility                                                      |
+|-------------|---------------------------------------------------------------------|
+| `auth`      | Login, JWT issuance                                                 |
+| `security`  | JWT filter, role-based access control, user details                 |
+| `patient`   | Patient registration, search, profile management                    |
+| `visit`     | Visit recording, symptom capture                                    |
+| `referral`  | Referral lifecycle, status transitions, auto-escalation job         |
+| `followup`  | Follow-up scheduling and status tracking                            |
+| `careplan`  | Rule-driven care plan generation from visit inputs                  |
+| `rules`     | Configurable rule engine (conditions, operators, actions)           |
+| `dashboard` | Aggregated supervisor metrics and KPIs                              |
+| `audit`     | Immutable audit log for key actions                                 |
+| `demo`      | Demo data seeding and reset endpoints                               |
+| `location`  | Village and facility reference data                                 |
+| `user`      | App user management and roles (ASHA, SUPERVISOR, ADMIN)             |
