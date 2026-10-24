@@ -52,3 +52,15 @@ cd backend
 - Health check: `http://localhost:8080/actuator/health`
 
 > On first start, demo data (synthetic patients, users, rules) is seeded automatically.
+
+**Environment variables (optional overrides):**
+
+| Variable        | Default                                      | Description                 |
+|-----------------|----------------------------------------------|-----------------------------|
+| `DB_URL`        | `jdbc:postgresql://localhost:5432/careroute` | Database URL                |
+| `DB_USERNAME`   | `careroute`                                  | Database username           |
+| `DB_PASSWORD`   | `careroute`                                  | Database password           |
+| `JWT_SECRET`    | *(dev default)*                              | Base64 secret, min 32 bytes |
+| `PORT`          | `8080`                                       | Server port                 |
+| `CORS_ORIGINS`  | `http://localhost:5173`                      | Allowed frontend origin     |
+| `DEMO_ENABLED`  | `true`                                       | Seed demo data on startup   |
