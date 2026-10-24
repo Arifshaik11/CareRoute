@@ -31,3 +31,14 @@ The login page shows three quick-login buttons for Sunitha (ASHA), Dr. Kiran (PH
 
 ---
 
+## The Three Roles
+
+### 1. ASHA Worker (asha.sunitha)
+
+**Who they are:** A community health worker assigned to one village. They visit patients at home, record observations, and follow up on tasks the system assigns them.
+
+**Home page:** `/due` (Due List) - a single prioritised list of visits they need to make, most urgent first.
+
+**Sidebar / navigation:**
+- **Due list** - prioritised tasks (overdue, due today, upcoming)
+- **Patients** - patients assigned to them in their village
