@@ -8,7 +8,7 @@ export function useEscalationAlerts() {
   const qc = useQueryClient()
 
   useEffect(() => {
-    const token = getToken()
+    const token = tokenStore.get()
     if (!token) return
 
     const es = new EventSource(`/api/events?token=${encodeURIComponent(token)}`)

@@ -1,4 +1,4 @@
-# CareRoute
+﻿# CareRoute
 
 > Community Health Follow-Up and Referral Coordination Platform
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-CareRoute is a field-first digital health platform designed to support community health workers (ASHAs) and supervisors in managing patient follow-ups and referrals at the last mile. The system enables ASHAs to register patients, record visits using voice or manual input in Telugu or English, and trigger care plans based on configurable clinical rules. Supervisors can monitor referral pipelines, track escalations on a live village map, and manage the rule engine from a dedicated dashboard. CareRoute bridges the gap between frontline health workers and higher-level facilities by providing structured, role-based workflows, automated escalation with real-time push notifications and SMS alerts — all within a lightweight, easily deployable stack.
+CareRoute is a field-first digital health platform designed to support community health workers (ASHAs) and supervisors in managing patient follow-ups and referrals at the last mile. The system enables ASHAs to register patients, record visits using voice or manual input in Telugu or English, and trigger care plans based on configurable clinical rules. Supervisors can monitor referral pipelines, track escalations on a live village map, and manage the rule engine from a dedicated dashboard. CareRoute bridges the gap between frontline health workers and higher-level facilities by providing structured, role-based workflows, automated escalation with real-time push notifications and SMS alerts â€” all within a lightweight, easily deployable stack.
 
 ---
 
@@ -22,10 +22,10 @@ CareRoute is a field-first digital health platform designed to support community
 ## New Features
 
 ### Voice Input (Telugu / English)
-ASHAs can record visit observations by speaking instead of typing. The voice button on the visit form activates the browser's Speech Recognition API in Telugu (`te-IN`). Spoken values for BP, temperature, weight, pregnancy weeks, TB dose, and symptoms are parsed and auto-filled into the form fields. Both Telugu and English phrases are supported (e.g., "బిపి 145 over 90", "temperature 38.5", "dose missed").
+ASHAs can record visit observations by speaking instead of typing. The voice button on the visit form activates the browser's Speech Recognition API in Telugu (`te-IN`). Spoken values for BP, temperature, weight, pregnancy weeks, TB dose, and symptoms are parsed and auto-filled into the form fields. Both Telugu and English phrases are supported (e.g., "à°¬à°¿à°ªà°¿ 145 over 90", "temperature 38.5", "dose missed").
 
 ### Real-Time Escalation Alerts (SSE)
-When a referral escalates (patient overdue at PHC), a real-time push notification is delivered to all connected clients via Server-Sent Events. A toast notification appears instantly on screen and the dashboard, due list, and referrals are automatically refreshed — no manual page reload needed.
+When a referral escalates (patient overdue at PHC), a real-time push notification is delivered to all connected clients via Server-Sent Events. A toast notification appears instantly on screen and the dashboard, due list, and referrals are automatically refreshed â€” no manual page reload needed.
 
 ### SMS Alerts on Escalation
 On referral escalation the assigned ASHA's registered phone number receives an SMS alert via Twilio ("CareRoute Alert: \<patient\> referral is overdue. Please visit today."). If Twilio credentials are not configured, the message is logged to console (mock mode).
@@ -94,7 +94,7 @@ cd backend
 | `TWILIO_AUTH_TOKEN`       | *(empty)*                                    | Twilio auth token                  |
 | `TWILIO_FROM_NUMBER`      | *(empty)*                                    | Twilio sender number               |
 
-> If Twilio variables are not set, SMS messages are logged to console (mock mode) — the app works normally.
+> If Twilio variables are not set, SMS messages are logged to console (mock mode) â€” the app works normally.
 
 ---
 
@@ -115,34 +115,34 @@ npm run dev
 CareRoute follows a standard **three-tier web architecture** with clear separation between the frontend, backend API, and database. Communication between tiers is via JSON REST over HTTP, secured with JWT bearer tokens. Real-time events are pushed from backend to frontend via Server-Sent Events (SSE). The schema is fully managed by Flyway migrations so the database is always in a known state on startup.
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                        Browser / Client                     │
-│              React 19 + TypeScript + Tailwind CSS           │
-│       (Vite · React Router · TanStack Query · SSE)          │
-└───────────────────────┬─────────────────────────────────────┘
-                        │ HTTPS / REST (JSON)
-                        │ JWT Bearer Token
-                        │ SSE (text/event-stream)
-┌───────────────────────▼─────────────────────────────────────┐
-│                      Backend API                            │
-│            Spring Boot 3.5 · Java 21 · Maven                │
-│                                                             │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐ │
-│  │  Auth /  │  │ Patient  │  │ Referral │  │   Rules    │ │
-│  │ Security │  │  Visit   │  │ Follow-up│  │  Engine    │ │
-│  └──────────┘  └──────────┘  └──────────┘  └────────────┘ │
-│                                                             │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐ │
-│  │Dashboard │  │ CarePlan │  │   SSE /  │  │Notification│ │
-│  │ Service  │  │ Service  │  │  Events  │  │  + SMS     │ │
-│  └──────────┘  └──────────┘  └──────────┘  └────────────┘ │
-└───────────────────────┬─────────────────────────────────────┘
-                        │ JPA / Flyway
-┌───────────────────────▼─────────────────────────────────────┐
-│                      PostgreSQL 16                          │
-│              Schema managed by Flyway migrations            │
-│                  (Docker · persistent volume)               │
-└─────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                        Browser / Client                     â”‚
+â”‚              React 19 + TypeScript + Tailwind CSS           â”‚
+â”‚       (Vite Â· React Router Â· TanStack Query Â· SSE)          â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                        â”‚ HTTPS / REST (JSON)
+                        â”‚ JWT Bearer Token
+                        â”‚ SSE (text/event-stream)
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                      Backend API                            â”‚
+â”‚            Spring Boot 3.5 Â· Java 21 Â· Maven                â”‚
+â”‚                                                             â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”‚
+â”‚  â”‚  Auth /  â”‚  â”‚ Patient  â”‚  â”‚ Referral â”‚  â”‚   Rules    â”‚ â”‚
+â”‚  â”‚ Security â”‚  â”‚  Visit   â”‚  â”‚ Follow-upâ”‚  â”‚  Engine    â”‚ â”‚
+â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â”‚
+â”‚                                                             â”‚
+â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” â”‚
+â”‚  â”‚Dashboard â”‚  â”‚ CarePlan â”‚  â”‚   SSE /  â”‚  â”‚Notificationâ”‚ â”‚
+â”‚  â”‚ Service  â”‚  â”‚ Service  â”‚  â”‚  Events  â”‚  â”‚  + SMS     â”‚ â”‚
+â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                        â”‚ JPA / Flyway
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                      PostgreSQL 16                          â”‚
+â”‚              Schema managed by Flyway migrations            â”‚
+â”‚                  (Docker Â· persistent volume)               â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ### Backend Modules
@@ -162,7 +162,7 @@ CareRoute follows a standard **three-tier web architecture** with clear separati
 | `demo`         | Demo data seeding and reset endpoints                                           |
 | `location`     | Village and facility reference data with lat/lng coordinates                    |
 | `user`         | App user management and roles (ASHA, PHC_STAFF, SUPERVISOR)                    |
-| `sse`          | Server-Sent Events — subscribe endpoint + broadcast to all connected clients    |
+| `sse`          | Server-Sent Events â€” subscribe endpoint + broadcast to all connected clients    |
 | `notification` | Orchestrates SSE push + Twilio SMS on referral escalation events                |
 
 ### Frontend Structure
@@ -170,7 +170,7 @@ CareRoute follows a standard **three-tier web architecture** with clear separati
 | Layer        | Files / Folders                                 | Purpose                                          |
 |--------------|-------------------------------------------------|--------------------------------------------------|
 | Pages        | `src/pages/`                                    | Route-level components per role                  |
-| Components   | `src/components/`                               | Shared UI (AppShell, VoiceButton, StatusBadges…) |
+| Components   | `src/components/`                               | Shared UI (AppShell, VoiceButton, StatusBadgesâ€¦) |
 | Contexts     | `src/contexts/LangContext.tsx`                  | Bilingual (English / Telugu) toggle              |
 |              | `src/contexts/ToastContext.tsx`                 | Global toast notifications                       |
 | Hooks        | `src/hooks/useVoiceInput.ts`                    | Speech Recognition + Telugu/English NLP parser   |
@@ -240,7 +240,7 @@ A full interactive reference is available at `http://localhost:8080/swagger-ui.h
 
 ## Database Schema
 
-The schema is owned and versioned by **Flyway** migrations in `backend/src/main/resources/db/migration/`. Hibernate runs in `validate` mode — it checks entities match the schema but never modifies tables.
+The schema is owned and versioned by **Flyway** migrations in `backend/src/main/resources/db/migration/`. Hibernate runs in `validate` mode â€” it checks entities match the schema but never modifies tables.
 
 | Migration File            | Description                                                          |
 |---------------------------|----------------------------------------------------------------------|
@@ -266,13 +266,13 @@ Key tables:
 
 ## Security
 
-- **Authentication** — Stateless JWT-based auth. Tokens expire after 12 hours (configurable via `app.jwt.expiration`).
-- **SSE Auth** — `EventSource` cannot send headers, so the JWT is accepted as a `?token=` query parameter on `/api/events` via `SseTokenFilter`, which rewrites it into an `Authorization: Bearer` header before the JWT filter runs.
-- **JWT Secret** — A dev-only default is bundled for local use. Set `JWT_SECRET` (base64, ≥ 32 bytes) for any shared deployment.
-- **Authorization** — Role-based access control via Spring Security `@PreAuthorize` and a centralised `AccessPolicy`. ASHAs can only access their own village's patients.
-- **CORS** — Configured via `CORS_ORIGINS` (default: `http://localhost:5173`).
-- **Password Storage** — BCrypt hashed.
-- **Error Responses** — Stack traces never included (`include-stacktrace: never`).
+- **Authentication** â€” Stateless JWT-based auth. Tokens expire after 12 hours (configurable via `app.jwt.expiration`).
+- **SSE Auth** â€” `EventSource` cannot send headers, so the JWT is accepted as a `?token=` query parameter on `/api/events` via `SseTokenFilter`, which rewrites it into an `Authorization: Bearer` header before the JWT filter runs.
+- **JWT Secret** â€” A dev-only default is bundled for local use. Set `JWT_SECRET` (base64, â‰¥ 32 bytes) for any shared deployment.
+- **Authorization** â€” Role-based access control via Spring Security `@PreAuthorize` and a centralised `AccessPolicy`. ASHAs can only access their own village's patients.
+- **CORS** â€” Configured via `CORS_ORIGINS` (default: `http://localhost:5173`).
+- **Password Storage** â€” BCrypt hashed.
+- **Error Responses** â€” Stack traces never included (`include-stacktrace: never`).
 
 ---
 
@@ -286,7 +286,7 @@ When `DEMO_ENABLED=true` (default), the backend seeds synthetic data on first st
 - Referrals in various lifecycle states (open, acknowledged, arrived, closed, escalated)
 - Pending and overdue follow-ups
 - Default clinical rules for the rule engine
-- Village coordinates for the dashboard map (Ramapuram, Kondapalli, Gollapalli — Andhra Pradesh)
+- Village coordinates for the dashboard map (Ramapuram, Kondapalli, Gollapalli â€” Andhra Pradesh)
 
 **Demo accounts (password for all: `demo@123`):**
 
