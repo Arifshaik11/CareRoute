@@ -318,3 +318,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
    - Full name: e.g., "Test Patient"
    - Age: 30
    - Sex: Female
+   - Programme: Maternal care (or any)
+   - Mobile number: optional (must be 10 digits starting with 6-9)
+   - Notes: optional
+4. Check the **consent checkbox** (required - explains what data is recorded and who can see it)
+5. Click **"Register & record first visit"**
+6. You're automatically taken to the **Record Visit** page for the new patient
+7. Record the first visit with any values
+8. After saving, the visit outcome screen shows what rules fired
+
+**What happened:** A new patient was created in the database, assigned to your village and to you as the ASHA. The first visit immediately runs through the rules engine.
