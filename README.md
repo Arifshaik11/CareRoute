@@ -27,3 +27,13 @@ CareRoute is a field-first digital health platform designed to support community
 - [Java 21](https://adoptium.net/)
 - [Maven 3.9+](https://maven.apache.org/)
 - [Node.js 20+](https://nodejs.org/) and npm
+
+---
+
+### 1. Start the Database
+
+```bash
+docker compose up -d
+```
+
+This starts a PostgreSQL 16 instance at `localhost:5432` with database name, username, and password all set to `careroute`. Flyway migrations run automatically on backend startup.
