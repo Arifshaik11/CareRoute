@@ -388,3 +388,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 2. Go to the **Dashboard**
 3. Scroll to **"Demo controls"** (bottom right, dashed border)
 4. Click **"Reset synthetic data"**
+5. A confirmation appears: "Yes, reset all patient data" / "Cancel"
+6. Click **"Yes, reset all patient data"**
+7. All patients, visits, follow-ups, and referrals are wiped and re-seeded from scratch
+8. Rules and users are preserved (only patient data is reset)
+
+---
+
+## Navigation Map
+
+### ASHA Worker
