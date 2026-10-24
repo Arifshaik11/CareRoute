@@ -168,3 +168,13 @@ If a referral is in REFERRED status, they also see a "Patient already here" butt
                                                         └──────────────────────┘
 ```
 
+**Step by step:**
+1. **ASHA records a visit** with observations (BP, temperature, weight, symptoms, etc.)
+2. The visit **completes any pending follow-ups** for that patient (a visit fulfils outstanding tasks)
+3. The **rules engine** evaluates the visit against all active rules
+4. Each matching **FOLLOW_UP rule** creates a new task on the ASHA's due list with a deadline
+5. The most urgent matching **REFERRAL rule** creates a referral to the PHC (only one referral at a time per patient)
+6. **PHC staff** see the referral and work it through: Acknowledge -> Patient arrived -> Close with outcome
+7. If the patient **doesn't arrive by the deadline**, the referral **escalates**: a critical task appears on the ASHA's due list saying "the patient hasn't reached the PHC, go help them"
+8. The **supervisor's dashboard** shows the whole picture: how many referrals completed, how many escalated, village-by-village breakdown
+
