@@ -1,8 +1,10 @@
 import { NavLink, Outlet } from 'react-router'
 import clsx from 'clsx'
-import { ClipboardList, LayoutDashboard, LogOut, Route, SlidersHorizontal, Users } from 'lucide-react'
+import { ClipboardList, Languages, LayoutDashboard, LogOut, Route, SlidersHorizontal, Users } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useCurrentUser, useAuth } from '../auth/auth-context'
+import { useLang } from '../contexts/LangContext'
+import { useEscalationAlerts } from '../hooks/useSSE'
 import { ROLE_LABEL } from '../lib/labels'
 import type { Role } from '../types/api'
 
@@ -33,8 +35,11 @@ const NAV: Record<Role, NavItem[]> = {
 export function AppShell() {
   const user = useCurrentUser()
   const { logout } = useAuth()
+  const { lang, toggle: toggleLang } = useLang()
   const items = NAV[user.role]
   const scope = user.villageName ?? user.facilityName ?? 'Ramapuram Block'
+
+  useEscalationAlerts()
 
   return (
     <div className="min-h-dvh pb-20 sm:pb-0">
@@ -64,6 +69,15 @@ export function AppShell() {
                 {ROLE_LABEL[user.role]} · {scope}
               </p>
             </div>
+            <button
+              type="button"
+              onClick={toggleLang}
+              className="grid size-9 place-items-center rounded-lg text-ink-soft hover:bg-ink/5"
+              aria-label={lang === 'en' ? 'Switch to Telugu' : 'Switch to English'}
+              title={lang === 'en' ? 'తెలుగు' : 'English'}
+            >
+              <Languages className="size-5" aria-hidden />
+            </button>
             <button
               type="button"
               onClick={logout}

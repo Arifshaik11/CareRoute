@@ -4,6 +4,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter } from 'react-router'
 import axios from 'axios'
 import { AuthProvider } from './auth/AuthContext'
+import { LangProvider } from './contexts/LangContext'
+import { ToastProvider } from './contexts/ToastContext'
 import { App } from './App'
 import './index.css'
 
@@ -25,9 +27,13 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
+        <LangProvider>
+          <ToastProvider>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </ToastProvider>
+        </LangProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </StrictMode>,
