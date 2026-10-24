@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+
+/* Design tokens. Warm paper canvas, deep teal brand, marigold accent.
+   Status colours are reserved for urgency/state and always ship with a text label. */
+@theme {
+  --font-sans: 'Manrope', 'Noto Sans Telugu', ui-sans-serif, system-ui, sans-serif;
+  --font-telugu: 'Noto Sans Telugu', 'Manrope', sans-serif;
+
+  --color-canvas: #f6f3ee;
+  --color-surface: #ffffff;
+  --color-line: #e4dfd6;
+  --color-ink: #14211f;
+  --color-ink-soft: #3d4b48;
+  --color-muted: #66746f;
+
+  --color-brand: #0f5257;
+  --color-brand-strong: #0a3d41;
+  --color-brand-soft: #e2eeec;
+  --color-accent: #f2a541;
+  --color-accent-soft: #fdf1dc;
+
+  --color-critical: #b42318;
+  --color-critical-soft: #fde8e6;
+  --color-high: #b54708;
+  --color-high-soft: #fef0e4;
+  --color-medium: #8a6100;
+  --color-medium-soft: #fbf3d5;
+  --color-low: #475467;
+  --color-low-soft: #eef1f4;
+  --color-good: #157f3c;
+  --color-good-soft: #e5f4ea;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+.font-telugu {
+  font-family: var(--font-telugu);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
