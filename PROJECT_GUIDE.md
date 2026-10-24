@@ -488,3 +488,13 @@ Base URL: `http://localhost:8080/api`
 | `/referrals` | GET | Any | List referrals (scoped by role) |
 | `/referrals/{id}` | GET | Any | Referral detail (scoped by role) |
 | `/referrals/{id}/acknowledge` | POST | PHC | Acknowledge referral |
+| `/referrals/{id}/arrive` | POST | PHC | Mark patient arrived |
+| `/referrals/{id}/close` | POST | PHC | Close referral with outcome |
+| `/rules` | GET | Supervisor | List all rules |
+| `/rules` | POST | Supervisor | Create a rule |
+| `/rules/{id}` | PUT | Supervisor | Update a rule |
+| `/rules/{id}/active` | PATCH | Supervisor | Toggle rule active/inactive |
+| `/dashboard` | GET | Supervisor | Block dashboard data |
+| `/demo/fast-forward` | POST | Supervisor | Simulate time passing |
+| `/demo/reset` | POST | Supervisor | Reset synthetic data |
+| `/swagger-ui.html` | GET | None | Swagger UI (interactive API docs) |
