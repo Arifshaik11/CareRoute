@@ -37,3 +37,18 @@ docker compose up -d
 ```
 
 This starts a PostgreSQL 16 instance at `localhost:5432` with database name, username, and password all set to `careroute`. Flyway migrations run automatically on backend startup.
+
+---
+
+### 2. Run the Backend
+
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+- API runs at: `http://localhost:8080`
+- Swagger UI: `http://localhost:8080/swagger-ui.html`
+- Health check: `http://localhost:8080/actuator/health`
+
+> On first start, demo data (synthetic patients, users, rules) is seeded automatically.
