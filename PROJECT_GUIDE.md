@@ -268,3 +268,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
    - The reason the referral was created (BP threshold exceeded)
    - Referred timestamp and expected-by deadline
    - A **timeline** on the right showing the "Referred" event
+6. Under "Update referral", you'll see the action button: **"Acknowledge - expecting patient"**
+7. Click it - the status changes to **Acknowledged**, and a new event appears on the timeline
+8. The button now changes to: **"Patient has arrived"**
+9. Click it - status changes to **Arrived**, timeline updates
+10. The button now changes to: **"Close with outcome"** with a required outcome note field
+11. Type an outcome note, e.g., "Reviewed by MO, BP monitoring advised, follow-up in 1 week"
+12. Click the button - status changes to **Closed**, the loop is complete
+13. Go back to the Referrals page and check the "Closed" tab - the referral appears there
+
+**What happened:** The referral moved through REFERRED -> ACKNOWLEDGED -> ARRIVED -> CLOSED. Each step was audited and added to the referral's event timeline.
