@@ -178,3 +178,13 @@ If a referral is in REFERRED status, they also see a "Patient already here" butt
 7. If the patient **doesn't arrive by the deadline**, the referral **escalates**: a critical task appears on the ASHA's due list saying "the patient hasn't reached the PHC, go help them"
 8. The **supervisor's dashboard** shows the whole picture: how many referrals completed, how many escalated, village-by-village breakdown
 
+---
+
+## Starter Rules (Pre-configured)
+
+These are the 9 rules seeded by default. The supervisor can edit, toggle, or add new ones.
+
+| Code | Name | Program | Condition | Action | Priority | Deadline |
+|---|---|---|---|---|---|---|
+| MAT_SEVERE_BP | Pregnancy: severely raised BP | Maternal | Systolic >= 160 OR Diastolic >= 110 | Refer | Critical | 12 hours |
+| MAT_HIGH_BP | Pregnancy: raised BP | Maternal | Systolic >= 140 OR Diastolic >= 90 | Refer | High | 48 hours |
