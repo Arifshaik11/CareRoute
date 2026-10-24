@@ -158,3 +158,13 @@ If a referral is in REFERRED status, they also see a "Patient already here" butt
                                             ▼                            ▼
                                      Loop closed              ESCALATION fires
                                     (resolved)                (after deadline)
+                                                                      │
+                                                                      ▼
+                                                        ┌──────────────────────┐
+                                                        │ Critical task sent   │
+                                                        │ back to ASHA's due   │
+                                                        │ list: "Patient hasn't│
+                                                        │ arrived, go help"    │
+                                                        └──────────────────────┘
+```
+
