@@ -5,37 +5,39 @@ import type { ReactNode } from 'react'
 import { useCurrentUser, useAuth } from '../auth/auth-context'
 import { useLang } from '../contexts/LangContext'
 import { useEscalationAlerts } from '../hooks/useSSE'
+import { T } from '../lib/i18n'
 import { ROLE_LABEL } from '../lib/labels'
 import type { Role } from '../types/api'
 
 interface NavItem {
   to: string
-  label: string
+  labelEn: string
+  labelTe: string
   icon: ReactNode
 }
 
 const NAV: Record<Role, NavItem[]> = {
   ASHA: [
-    { to: '/due', label: 'Due list', icon: <ClipboardList className="size-5" aria-hidden /> },
-    { to: '/patients', label: 'Patients', icon: <Users className="size-5" aria-hidden /> },
-    { to: '/referrals', label: 'Referrals', icon: <Route className="size-5" aria-hidden /> },
+    { to: '/due', labelEn: T.dueList.en, labelTe: T.dueList.te, icon: <ClipboardList className="size-5" aria-hidden /> },
+    { to: '/patients', labelEn: T.patients.en, labelTe: T.patients.te, icon: <Users className="size-5" aria-hidden /> },
+    { to: '/referrals', labelEn: T.referrals.en, labelTe: T.referrals.te, icon: <Route className="size-5" aria-hidden /> },
   ],
   PHC_STAFF: [
-    { to: '/referrals', label: 'Referrals', icon: <Route className="size-5" aria-hidden /> },
-    { to: '/patients', label: 'Patients', icon: <Users className="size-5" aria-hidden /> },
+    { to: '/referrals', labelEn: T.referrals.en, labelTe: T.referrals.te, icon: <Route className="size-5" aria-hidden /> },
+    { to: '/patients', labelEn: T.patients.en, labelTe: T.patients.te, icon: <Users className="size-5" aria-hidden /> },
   ],
   SUPERVISOR: [
-    { to: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="size-5" aria-hidden /> },
-    { to: '/referrals', label: 'Referrals', icon: <Route className="size-5" aria-hidden /> },
-    { to: '/patients', label: 'Patients', icon: <Users className="size-5" aria-hidden /> },
-    { to: '/rules', label: 'Rules', icon: <SlidersHorizontal className="size-5" aria-hidden /> },
+    { to: '/dashboard', labelEn: T.dashboard.en, labelTe: T.dashboard.te, icon: <LayoutDashboard className="size-5" aria-hidden /> },
+    { to: '/referrals', labelEn: T.referrals.en, labelTe: T.referrals.te, icon: <Route className="size-5" aria-hidden /> },
+    { to: '/patients', labelEn: T.patients.en, labelTe: T.patients.te, icon: <Users className="size-5" aria-hidden /> },
+    { to: '/rules', labelEn: T.rules.en, labelTe: T.rules.te, icon: <SlidersHorizontal className="size-5" aria-hidden /> },
   ],
 }
 
 export function AppShell() {
   const user = useCurrentUser()
   const { logout } = useAuth()
-  const { lang, toggle: toggleLang } = useLang()
+  const { lang, toggle: toggleLang, t } = useLang()
   const items = NAV[user.role]
   const scope = user.villageName ?? user.facilityName ?? 'Ramapuram Block'
 
@@ -58,7 +60,7 @@ export function AppShell() {
                   )
                 }
               >
-                {item.label}
+                {t(item.labelEn, item.labelTe)}
               </NavLink>
             ))}
           </nav>
@@ -73,7 +75,7 @@ export function AppShell() {
               type="button"
               onClick={toggleLang}
               className="grid size-9 place-items-center rounded-lg text-ink-soft hover:bg-ink/5"
-              aria-label={lang === 'en' ? 'Switch to Telugu' : 'Switch to English'}
+              aria-label={t(T.switchToTelugu.en, T.switchToTelugu.te)}
               title={lang === 'en' ? 'తెలుగు' : 'English'}
             >
               <Languages className="size-5" aria-hidden />
@@ -82,8 +84,8 @@ export function AppShell() {
               type="button"
               onClick={logout}
               className="grid size-9 place-items-center rounded-lg text-ink-soft hover:bg-ink/5"
-              aria-label="Sign out"
-              title="Sign out"
+              aria-label={t(T.signOut.en, T.signOut.te)}
+              title={t(T.signOut.en, T.signOut.te)}
             >
               <LogOut className="size-5" aria-hidden />
             </button>
@@ -113,7 +115,7 @@ export function AppShell() {
             }
           >
             {item.icon}
-            {item.label}
+            {t(item.labelEn, item.labelTe)}
           </NavLink>
         ))}
       </nav>

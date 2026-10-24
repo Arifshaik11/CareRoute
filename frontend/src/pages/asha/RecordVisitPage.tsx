@@ -12,8 +12,10 @@ import { Field, Input, Textarea } from '../../components/ui/Field'
 import { PageHeader } from '../../components/ui/PageHeader'
 import { Spinner } from '../../components/ui/Spinner'
 import { ErrorState, InlineError } from '../../components/ui/States'
+import { useLang } from '../../contexts/LangContext'
 import { useVoiceInput, type VoiceFields } from '../../hooks/useVoiceInput'
 import { formatDateTime } from '../../lib/format'
+import { T } from '../../lib/i18n'
 import { OUTCOME_LABEL } from '../../lib/labels'
 import type { PatientDetail, Program, RecordVisitRequest, VisitResult } from '../../types/api'
 
@@ -50,6 +52,7 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
   const { patient } = detail
   const meta = useMeta()
   const record = useRecordVisit(patient.id)
+  const { t } = useLang()
 
   const [systolic, setSystolic] = useState('')
   const [diastolic, setDiastolic] = useState('')
@@ -103,7 +106,7 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
       return
     }
     if (isTb && doseTaken === null) {
-      setFormError('Record whether today’s TB dose was taken.')
+      setFormError("Record whether today's TB dose was taken.")
       return
     }
     record.mutate(body, { onSuccess: onSaved })
@@ -112,7 +115,7 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
   return (
     <>
       <PageHeader
-        title="Record visit"
+        title={t(T.recordVisitTitle.en, T.recordVisitTitle.te)}
         subtitle={
           <span className="inline-flex items-center gap-2">
             {patient.fullName} · {patient.age} y <ProgramTag program={patient.program} />
@@ -130,10 +133,10 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
           </div>
         )}
         <Card>
-          <CardHeader title="Observations" subtitle="Leave a field empty if you didn't measure it." />
+          <CardHeader title={t(T.observations.en, T.observations.te)} subtitle={t(T.obsSubtitle.en, T.obsSubtitle.te)} />
           <div className="grid gap-4 p-4 sm:grid-cols-2 sm:p-5">
             {showBp && (
-              <Field label="Blood pressure (mmHg)" hint="Systolic / diastolic">
+              <Field label={t(T.bloodPressure.en, T.bloodPressure.te)} hint={t(T.bpHint.en, T.bpHint.te)}>
                 {(id) => (
                   <div className="flex items-center gap-2">
                     <Input id={id} inputMode="numeric" placeholder="120" value={systolic}
@@ -146,20 +149,20 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
               </Field>
             )}
             {isMaternal && (
-              <Field label="Pregnancy (weeks)" hint={weeks ? 'Estimated from the last visit — correct if needed' : undefined}>
+              <Field label={t(T.pregnancyWeeks.en, T.pregnancyWeeks.te)} hint={weeks ? t(T.pregnancyHint.en, T.pregnancyHint.te) : undefined}>
                 {(id) => (
                   <Input id={id} inputMode="numeric" value={weeks}
                     onChange={(e) => setWeeks(e.target.value.replace(/\D/g, '').slice(0, 2))} />
                 )}
               </Field>
             )}
-            <Field label="Temperature (°C)">
+            <Field label={t(T.temperature.en, T.temperature.te)}>
               {(id) => (
                 <Input id={id} inputMode="decimal" placeholder="36.8" value={temperature}
                   onChange={(e) => setTemperature(e.target.value.replace(/[^\d.]/g, '').slice(0, 4))} />
               )}
             </Field>
-            <Field label="Weight (kg)">
+            <Field label={t(T.weight.en, T.weight.te)}>
               {(id) => (
                 <Input id={id} inputMode="decimal" value={weight}
                   onChange={(e) => setWeight(e.target.value.replace(/[^\d.]/g, '').slice(0, 5))} />
@@ -167,14 +170,14 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
             </Field>
             {isTb && (
               <fieldset className="sm:col-span-2">
-                <legend className="mb-1.5 text-sm font-semibold text-ink-soft">Today’s TB dose taken?</legend>
+                <legend className="mb-1.5 text-sm font-semibold text-ink-soft">{t(T.tbDose.en, T.tbDose.te)}</legend>
                 <div className="flex gap-2">
                   {[true, false].map((v) => (
                     <button key={String(v)} type="button" onClick={() => setDoseTaken(v)}
                       className={clsx('h-10 flex-1 rounded-lg border text-sm font-semibold',
                         doseTaken === v ? 'border-brand bg-brand text-white' : 'border-line bg-surface text-ink')}
                       aria-pressed={doseTaken === v}>
-                      {v ? 'Yes, taken' : 'No, missed'}
+                      {v ? t(T.yes.en, T.yes.te) : t(T.no.en, T.no.te)}
                     </button>
                   ))}
                 </div>
@@ -184,7 +187,7 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
         </Card>
 
         <Card>
-          <CardHeader title="Symptoms reported" subtitle="Tick everything the patient reports today." />
+          <CardHeader title={t(T.symptomsTitle.en, T.symptomsTitle.te)} subtitle={t(T.symptomsSubtitle.en, T.symptomsSubtitle.te)} />
           <div className="grid gap-2 p-4 sm:grid-cols-2 sm:p-5">
             {meta.data?.symptoms.map((s) => {
               const checked = symptoms.includes(s.code)
@@ -201,12 +204,12 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
                 </label>
               )
             })}
-            {meta.isLoading && <Spinner label="Loading symptoms…" />}
+            {meta.isLoading && <Spinner label={t(T.loadingSymptoms.en, T.loadingSymptoms.te)} />}
           </div>
         </Card>
 
         <Card className="p-4 sm:p-5">
-          <Field label="Notes (optional)">
+          <Field label={t(T.notes.en, T.notes.te)}>
             {(id) => <Textarea id={id} value={notes} onChange={(e) => setNotes(e.target.value)} maxLength={1000} />}
           </Field>
         </Card>
@@ -219,9 +222,9 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
         <InlineError error={record.error} />
 
         <div className="flex justify-end gap-2">
-          <ButtonLink to={`/patients/${patient.id}`} variant="ghost">Cancel</ButtonLink>
+          <ButtonLink to={`/patients/${patient.id}`} variant="ghost">{t(T.cancel.en, T.cancel.te)}</ButtonLink>
           <Button type="submit" size="lg" loading={record.isPending}>
-            Save visit
+            {t(T.saveVisit.en, T.saveVisit.te)}
           </Button>
         </div>
       </form>
@@ -232,11 +235,12 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
 /** What the rules decided — shown immediately, with the reason for every flag. */
 function VisitOutcome({ patientId, result }: { patientId: number; result: VisitResult }) {
   const navigate = useNavigate()
+  const { t } = useLang()
   const referral = result.outcomes.find((o) => o.result === 'REFERRAL_CREATED')
 
   return (
     <>
-      <PageHeader title="Visit saved" subtitle={formatDateTime(result.visit.visitedAt)} />
+      <PageHeader title={t(T.visitSaved.en, T.visitSaved.te)} subtitle={formatDateTime(result.visit.visitedAt)} />
 
       <Card className={clsx('mb-4 p-5', referral ? 'border-critical/40 bg-critical-soft/40' : 'border-good/30 bg-good-soft/50')}>
         <div className="flex items-start gap-3">
@@ -247,7 +251,11 @@ function VisitOutcome({ patientId, result }: { patientId: number; result: VisitR
           )}
           <div>
             <p className="text-lg font-bold text-ink">
-              {referral ? 'Referral sent to the PHC' : result.outcomes.length ? 'Next visit scheduled' : 'No flags raised'}
+              {referral
+                ? t(T.referralSent.en, T.referralSent.te)
+                : result.outcomes.length
+                  ? t(T.nextVisit.en, T.nextVisit.te)
+                  : t(T.noFlags.en, T.noFlags.te)}
             </p>
             <p className="mt-1 text-sm text-ink-soft">
               {referral
@@ -264,7 +272,7 @@ function VisitOutcome({ patientId, result }: { patientId: number; result: VisitR
 
       {result.outcomes.length > 0 && (
         <Card className="mb-4">
-          <CardHeader title="Why" subtitle="Each rule that fired, in plain language" />
+          <CardHeader title={t(T.whyTitle.en, T.whyTitle.te)} subtitle={t(T.whySubtitle.en, T.whySubtitle.te)} />
           <ul className="divide-y divide-line">
             {result.outcomes.map((o) => (
               <li key={`${o.ruleCode}-${o.result}`} className="p-4 sm:px-5">
@@ -288,9 +296,11 @@ function VisitOutcome({ patientId, result }: { patientId: number; result: VisitR
 
       <div className="mt-5 flex flex-wrap justify-end gap-2">
         <Button variant="secondary" onClick={() => navigate(`/patients/${patientId}`)}>
-          View patient
+          {t(T.viewPatient.en, T.viewPatient.te)}
         </Button>
-        <Button onClick={() => navigate('/due')}>Back to due list</Button>
+        <Button onClick={() => navigate('/due')}>
+          {t(T.backToDueList.en, T.backToDueList.te)}
+        </Button>
       </div>
     </>
   )

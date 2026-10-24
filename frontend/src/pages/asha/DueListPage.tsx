@@ -9,13 +9,16 @@ import { Card } from '../../components/ui/Card'
 import { PageHeader } from '../../components/ui/PageHeader'
 import { Spinner } from '../../components/ui/Spinner'
 import { EmptyState, ErrorState, InlineError } from '../../components/ui/States'
+import { useLang } from '../../contexts/LangContext'
 import { formatDateTime, formatRelative, isRecent, isToday } from '../../lib/format'
+import { T } from '../../lib/i18n'
 import type { FollowUp } from '../../types/api'
 
 /** The ASHA's single prioritised list — replaces the stack of paper registers. */
 export function DueListPage() {
   const user = useCurrentUser()
   const { data, isLoading, error, refetch } = useDueList()
+  const { t } = useLang()
 
   const overdue = data?.filter((f) => f.overdue) ?? []
   const today = data?.filter((f) => !f.overdue && isToday(f.dueAt)) ?? []
@@ -24,11 +27,11 @@ export function DueListPage() {
   return (
     <>
       <PageHeader
-        title={`Namaskaram, ${user.fullName.split(' ')[0]}`}
-        subtitle={`${user.villageName ?? ''} · Your visits, most urgent first`}
+        title={`${t(T.namaskaram.en, T.namaskaram.te)}, ${user.fullName.split(' ')[0]}`}
+        subtitle={`${user.villageName ?? ''} · ${t(T.yourVisits.en, T.yourVisits.te)}`}
         actions={
           <ButtonLink to="/patients/new" variant="secondary">
-            <UserPlus className="size-4" aria-hidden /> Register patient
+            <UserPlus className="size-4" aria-hidden /> {t(T.registerPatient.en, T.registerPatient.te)}
           </ButtonLink>
         }
       />
@@ -39,22 +42,22 @@ export function DueListPage() {
       {data && (
         <>
           <div className="mb-6 grid grid-cols-3 gap-3">
-            <Counter label="Overdue" value={overdue.length} tone="critical" />
-            <Counter label="Due today" value={today.length} tone="brand" />
-            <Counter label="Upcoming" value={upcoming.length} tone="muted" />
+            <Counter label={t(T.overdue.en, T.overdue.te)} value={overdue.length} tone="critical" />
+            <Counter label={t(T.dueToday.en, T.dueToday.te)} value={today.length} tone="brand" />
+            <Counter label={t(T.upcoming.en, T.upcoming.te)} value={upcoming.length} tone="muted" />
           </div>
 
           {data.length === 0 ? (
             <Card>
-              <EmptyState title="All caught up" icon={<CheckCheck className="size-5" aria-hidden />}>
-                No pending visits. New tasks appear here automatically when a visit or referral needs follow-up.
+              <EmptyState title={t(T.allCaughtUp.en, T.allCaughtUp.te)} icon={<CheckCheck className="size-5" aria-hidden />}>
+                {t(T.allCaughtUpDesc.en, T.allCaughtUpDesc.te)}
               </EmptyState>
             </Card>
           ) : (
             <div className="space-y-8">
-              <Section title="Overdue" items={overdue} />
-              <Section title="Due today" items={today} />
-              <Section title="Upcoming" items={upcoming} />
+              <Section title={t(T.overdue.en, T.overdue.te)} items={overdue} />
+              <Section title={t(T.dueToday.en, T.dueToday.te)} items={today} />
+              <Section title={t(T.upcoming.en, T.upcoming.te)} items={upcoming} />
             </div>
           )}
         </>
@@ -92,6 +95,7 @@ function Section({ title, items }: { title: string; items: FollowUp[] }) {
 function DueCard({ item }: { item: FollowUp }) {
   const complete = useCompleteFollowUp()
   const fromEscalation = item.referralId != null
+  const { t } = useLang()
 
   return (
     <Card
@@ -105,12 +109,12 @@ function DueCard({ item }: { item: FollowUp }) {
           {item.overdue && <OverdueBadge />}
           {fromEscalation && (
             <Badge tone="critical" icon={<Siren className="size-3.5" aria-hidden />}>
-              Missed referral
+              {t(T.missedReferral.en, T.missedReferral.te)}
             </Badge>
           )}
-          {isRecent(item.createdAt) && <Badge tone="accent">New</Badge>}
+          {isRecent(item.createdAt) && <Badge tone="accent">{t(T.newBadge.en, T.newBadge.te)}</Badge>}
           <span className="ml-auto text-xs font-semibold text-muted" title={formatDateTime(item.dueAt)}>
-            Due {formatRelative(item.dueAt)}
+            {t(T.due.en, T.due.te)} {formatRelative(item.dueAt)}
           </span>
         </div>
 
@@ -130,13 +134,13 @@ function DueCard({ item }: { item: FollowUp }) {
           <Info className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
           <div className="text-sm text-ink-soft">
             <p>{item.reason}</p>
-            {item.ruleCode && <p className="mt-1 text-xs text-muted">Rule: {item.ruleName ?? item.ruleCode}</p>}
+            {item.ruleCode && <p className="mt-1 text-xs text-muted">{t(T.rule.en, T.rule.te)}: {item.ruleName ?? item.ruleCode}</p>}
           </div>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
           <ButtonLink to={`/patients/${item.patientId}/visit`} size="sm">
-            <Stethoscope className="size-4" aria-hidden /> Record visit
+            <Stethoscope className="size-4" aria-hidden /> {t(T.recordVisit.en, T.recordVisit.te)}
           </ButtonLink>
           <Button
             size="sm"
@@ -144,7 +148,7 @@ function DueCard({ item }: { item: FollowUp }) {
             loading={complete.isPending}
             onClick={() => complete.mutate({ id: item.id, note: 'Marked done from due list' })}
           >
-            <ClipboardCheck className="size-4" aria-hidden /> Mark done
+            <ClipboardCheck className="size-4" aria-hidden /> {t(T.markDone.en, T.markDone.te)}
           </Button>
         </div>
         {complete.error && (
