@@ -53,3 +53,14 @@ The login page shows three quick-login buttons for Sunitha (ASHA), Dr. Kiran (PH
 - Record a home visit with observations: blood pressure, temperature, weight, pregnancy weeks, TB dose, symptoms, notes
 - After saving a visit, see what the rules engine decided (follow-up created? referral sent?)
 - View patient detail pages with visit history, open tasks, and referral timelines
+- View referrals for their patients (read-only, to see if the PHC acknowledged/received the patient)
+
+**What they cannot do:**
+- See patients from other villages
+- See the block dashboard
+- Create or edit rules
+- Update referral status (that's PHC staff's job)
+
+---
+
+### 2. PHC Staff (phc.kiran)
