@@ -448,3 +448,13 @@ Lakshmi Devi is a specifically seeded patient designed for live demos:
 - **Pregnancy:** Third trimester (~28 weeks)
 - **History:** Two prior visits, both with normal readings (last BP was 118/76)
 - **Status:** A routine follow-up is due in about 4 hours from app startup
+
+**The demo story:** Log in as Sunitha (ASHA), find Lakshmi in the due list, record a visit with raised BP (e.g., 145/92). This triggers the MAT_HIGH_BP referral rule. Then switch to Dr. Kiran (PHC) to see and process the referral. Then switch to Anil (Supervisor) and fast-forward 48 hours to see the escalation if the patient hasn't arrived. Switch back to Sunitha to see the critical escalation task on the due list.
+
+---
+
+## Key Concepts to Understand
+
+**Every task explains itself.** Each follow-up on the ASHA's due list shows which rule created it and why, in plain language. The same explanation appears on the visit outcome screen. No black boxes.
+
+**One referral at a time.** If a patient already has an open referral, a new matching referral rule shows "Covered by referral" instead of creating a duplicate. The most urgent referral rule wins.
