@@ -128,3 +128,13 @@ If a referral is in REFERRED status, they also see a "Patient already here" butt
 - Update referral status (that's PHC staff's job)
 
 ---
+
+## The Core Workflow (How Everything Connects)
+
+```
+                         ┌─────────────────────────────────────────────────┐
+                         │              RULES ENGINE                        │
+                         │  (configured by Supervisor, runs on every visit) │
+                         └──────────┬──────────────────────┬────────────────┘
+                                    │                      │
+                          FOLLOW_UP rule              REFERRAL rule
