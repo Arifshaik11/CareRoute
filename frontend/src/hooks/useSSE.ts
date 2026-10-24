@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useToast } from '../contexts/ToastContext'
-import { getToken } from '../lib/http'
+import { tokenStore } from '../lib/http'
 
 export function useEscalationAlerts() {
   const toast = useToast()

@@ -1,16 +1,18 @@
-import { useState, type FormEvent } from 'react'
+import { useState, useCallback, type FormEvent } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import clsx from 'clsx'
 import { CheckCircle2, ClipboardList, Route as RouteIcon, Send } from 'lucide-react'
 import { useMeta, usePatient, useRecordVisit } from '../../api/queries'
 import { ScreeningNotice } from '../../components/ScreeningNotice'
 import { PriorityBadge, ProgramTag } from '../../components/StatusBadges'
+import { VoiceButton } from '../../components/VoiceButton'
 import { Button, ButtonLink } from '../../components/ui/Button'
 import { Card, CardHeader } from '../../components/ui/Card'
 import { Field, Input, Textarea } from '../../components/ui/Field'
 import { PageHeader } from '../../components/ui/PageHeader'
 import { Spinner } from '../../components/ui/Spinner'
 import { ErrorState, InlineError } from '../../components/ui/States'
+import { useVoiceInput, type VoiceFields } from '../../hooks/useVoiceInput'
 import { formatDateTime } from '../../lib/format'
 import { OUTCOME_LABEL } from '../../lib/labels'
 import type { PatientDetail, Program, RecordVisitRequest, VisitResult } from '../../types/api'
@@ -58,6 +60,20 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
   const [symptoms, setSymptoms] = useState<string[]>([])
   const [notes, setNotes] = useState('')
   const [formError, setFormError] = useState<string | null>(null)
+  const [usedVoice, setUsedVoice] = useState(false)
+
+  const onVoiceResult = useCallback((fields: VoiceFields) => {
+    if (fields.systolic != null)       setSystolic(String(fields.systolic))
+    if (fields.diastolic != null)      setDiastolic(String(fields.diastolic))
+    if (fields.weightKg != null)       setWeight(String(fields.weightKg))
+    if (fields.temperatureC != null)   setTemperature(String(fields.temperatureC))
+    if (fields.pregnancyWeeks != null) setWeeks(String(fields.pregnancyWeeks))
+    if (fields.doseTaken != null)      setDoseTaken(fields.doseTaken)
+    if (fields.symptoms?.length)       setSymptoms((s) => [...new Set([...s, ...fields.symptoms!])])
+    setUsedVoice(true)
+  }, [])
+
+  const voice = useVoiceInput(onVoiceResult)
 
   const showBp = SHOWS_BP.includes(patient.program)
   const isMaternal = patient.program === 'MATERNAL'
@@ -80,7 +96,7 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
       doseTaken: isTb && doseTaken !== null ? doseTaken : undefined,
       symptoms,
       notes: notes.trim() || undefined,
-      source: 'MANUAL',
+      source: usedVoice ? 'VOICE' : 'MANUAL',
     }
     if ((body.systolicBp == null) !== (body.diastolicBp == null)) {
       setFormError('Enter both BP values, or leave both empty.')
@@ -108,6 +124,11 @@ function VisitForm({ detail, onSaved }: { detail: PatientDetail; onSaved: (r: Vi
       </div>
 
       <form onSubmit={onSubmit} className="space-y-4" noValidate>
+        {voice.isSupported && (
+          <div className="flex justify-end">
+            <VoiceButton voice={voice} />
+          </div>
+        )}
         <Card>
           <CardHeader title="Observations" subtitle="Leave a field empty if you didn't measure it." />
           <div className="grid gap-4 p-4 sm:grid-cols-2 sm:p-5">
