@@ -428,3 +428,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 ### Block Supervisor
 ```
 /dashboard              Dashboard (home) - KPIs, funnel, villages, escalations, demo controls
+/referrals              All referrals in the block (read-only)
+  └─ click ──────────> /referrals/:id          Referral detail (read-only, no action buttons)
+/patients               All patients in the block (read-only)
+  └─ click ──────────> /patients/:id          Patient detail with access log (who viewed the record)
+/rules                  All rules (list with toggle and edit)
+  └─ click edit ─────> /rules/:id              Rule editor
+  └─ New rule ───────> /rules/new              Rule editor (blank)
+```
+
+---
