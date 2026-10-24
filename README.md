@@ -243,3 +243,15 @@ When `DEMO_ENABLED=true` (the default), the backend seeds a realistic set of syn
 To reset demo data at any time, call `POST /api/demo/reset` (requires `SUPERVISOR` role or above).
 
 > Demo mode is intended for development and evaluation only. Disable it (`DEMO_ENABLED=false`) for any real deployment.
+
+---
+
+## License
+
+This project is developed by **Innovation Matrix** as a community health initiative. All rights reserved.
+
+For questions, contributions, or collaboration inquiries, reach out to any of the contributors listed above.
+
+---
+
+*Built with care for frontline health workers.*
