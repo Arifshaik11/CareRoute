@@ -308,3 +308,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 
 ---
 
+### Scenario 5: ASHA registers a new patient
+
+**Goal:** See how a new patient enters the system.
+
+1. Log in as **Sunitha K** (ASHA)
+2. Click **"Register patient"** (button on the Due List page, top right)
+3. Fill in the form:
+   - Full name: e.g., "Test Patient"
+   - Age: 30
+   - Sex: Female
