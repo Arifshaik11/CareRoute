@@ -278,3 +278,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 13. Go back to the Referrals page and check the "Closed" tab - the referral appears there
 
 **What happened:** The referral moved through REFERRED -> ACKNOWLEDGED -> ARRIVED -> CLOSED. Each step was audited and added to the referral's event timeline.
+
+---
+
+### Scenario 4: The escalation loop (patient doesn't arrive)
+
+**Goal:** See what happens when a referred patient doesn't reach the PHC in time. This is the "closed loop" that makes CareRoute different from a simple referral system.
+
+1. Log in as **Sunitha K** (ASHA) and record a visit with high BP for Lakshmi Devi (same as Scenario 2) to create a referral
+2. Log out (click the sign-out icon, top right)
+3. Log in as **supervisor.anil** (Block supervisor)
