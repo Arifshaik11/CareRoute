@@ -418,3 +418,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 /referrals              Referrals (home) - incoming to your PHC
   └─ tabs: Awaiting arrival | Escalated | Arrived | Closed | All
   └─ click ──────────> /referrals/:id          Referral detail
+                        └─ Acknowledge ──> status becomes Acknowledged
+                        └─ Patient arrived ──> status becomes Arrived
+                        └─ Close with outcome ──> status becomes Closed (requires note)
+/patients               Patients in villages your PHC serves (read-only)
+  └─ click ──────────> /patients/:id          Patient detail (read-only, no visit button)
+```
+
+### Block Supervisor
+```
+/dashboard              Dashboard (home) - KPIs, funnel, villages, escalations, demo controls
