@@ -458,3 +458,13 @@ Lakshmi Devi is a specifically seeded patient designed for live demos:
 **Every task explains itself.** Each follow-up on the ASHA's due list shows which rule created it and why, in plain language. The same explanation appears on the visit outcome screen. No black boxes.
 
 **One referral at a time.** If a patient already has an open referral, a new matching referral rule shows "Covered by referral" instead of creating a duplicate. The most urgent referral rule wins.
+
+**The loop is closed.** A referral isn't just sent and forgotten. If the patient doesn't arrive at the PHC by the deadline, the system escalates: a CRITICAL task appears on the ASHA's due list telling them to go help the patient reach the facility. When the patient does arrive (at any point), the escalation task is automatically resolved.
+
+**Rules are transparent and configurable.** Every flag in the system traces back to a specific rule the supervisor can see, edit, or turn off. The supervisor controls what triggers follow-ups and referrals, with plain-language explanations shown to staff.
+
+**Scope-based access.** ASHAs only see their own village's patients. PHC staff see patients from villages their facility serves and referrals to their facility. The supervisor sees everything, including access logs showing who viewed each patient record.
+
+**Screening, not diagnosis.** The app includes a screening notice on visit forms and patient pages: this is screening information, not a clinical diagnosis. The rules are illustrative screening thresholds for a prototype.
+
+---
