@@ -498,3 +498,13 @@ Base URL: `http://localhost:8080/api`
 | `/demo/fast-forward` | POST | Supervisor | Simulate time passing |
 | `/demo/reset` | POST | Supervisor | Reset synthetic data |
 | `/swagger-ui.html` | GET | None | Swagger UI (interactive API docs) |
+
+---
+
+## Tech Stack
+
+- **Frontend:** React 19 + TypeScript + Vite 7 + Tailwind CSS 4 + TanStack Query + React Router 7
+- **Backend:** Spring Boot 3.5 + Java 21 + Spring Security + JPA/Hibernate + Flyway + PostgreSQL
+- **Database:** PostgreSQL 16+ (running locally on port 5432)
+- **Auth:** JWT-based, scoped by role and village/facility
+
