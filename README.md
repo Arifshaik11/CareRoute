@@ -182,3 +182,28 @@ A full interactive reference is available at `http://localhost:8080/swagger-ui.h
 | Meta         | `/api/meta`         | Reference data (villages, facilities, enums)     |
 | Demo         | `/api/demo`         | Seed or reset demo data (supervisor only)        |
 | Health       | `/actuator/health`  | Service health check (public)                    |
+
+---
+
+## Database Schema
+
+The schema is owned and versioned by **Flyway** migrations located in `backend/src/main/resources/db/migration/`. Hibernate runs in `validate` mode — it only checks that the schema matches the entities, it never modifies tables.
+
+| Migration File         | Description                                                         |
+|------------------------|---------------------------------------------------------------------|
+| `V1__init_schema.sql`  | Core tables: users, patients, visits, referrals, follow-ups, rules  |
+| `V2__reference_data.sql` | Seed data: villages, facilities, default clinical rules            |
+
+Key tables:
+
+| Table         | Description                                         |
+|---------------|-----------------------------------------------------|
+| `app_user`    | Authenticated users with roles                      |
+| `patient`     | Patient demographics and program enrollment         |
+| `visit`       | Visit records with symptoms and vitals              |
+| `referral`    | Referral requests and status transitions            |
+| `follow_up`   | Scheduled follow-up tasks linked to patients        |
+| `care_rule`   | Configurable clinical rules for care plan triggers  |
+| `audit_log`   | Immutable record of key system actions              |
+| `village`     | Reference data for patient locations                |
+| `facility`    | Health facilities for referral routing              |
