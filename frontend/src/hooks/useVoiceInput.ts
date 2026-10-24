@@ -18,59 +18,67 @@ function parseTranscript(text: string): ParsedResult {
   const lower = text.toLowerCase()
   const result: ParsedResult = { rawTranscript: text }
 
-  // BP: "BP 140 over 90", "blood pressure 140 90", "BP 140/90"
-  const bpMatch = lower.match(/(?:bp|blood pressure|బిపి)[^\d]*(\d{2,3})\s*(?:over|\/|[\s,]+)(\d{2,3})/)
+  // ── Blood Pressure ────────────────────────────────────────────────────────
+  // English:  "BP 140 over 90", "blood pressure 140/90", "BP 140 90"
+  // Telugu:   "బిపి", "బ్లడ్ ప్రెజర్", "బ్లడ్ ప్రెషర్"
+  const bpMatch = lower.match(
+    /(?:bp|blood pressure|బిపి|బ్లడ్\s*(?:ప్రెజర్|ప్రెషర్|pressure))[^\d]*(\d{2,3})\s*(?:over|\/|[\s,]+)(\d{2,3})/
+  )
   if (bpMatch) {
     result.systolic = parseInt(bpMatch[1], 10)
     result.diastolic = parseInt(bpMatch[2], 10)
   }
 
-  // Temperature: "temperature 37.2", "fever 38", "temp 37"
-  const tempMatch = lower.match(/(?:temperature|temp|fever|జ్వరం)[^\d]*(\d{2}(?:\.\d)?)/)
-  if (tempMatch) result.temperatureC = parseFloat(tempMatch[1])
+  // ── Temperature ───────────────────────────────────────────────────────────
+  // English:   "temperature 37.2", "temp 38", "fever 38"
+  // Telugu:    "టెంపరేచర్", "టెంప్", "జ్వరం"
+  // Accepts decimals: "36.8", "36 point 8", "36 పాయింట్ 8"
+  const tempMatch = lower.match(
+    /(?:temperature|temp(?:erature)?|fever|జ్వరం|టెంపరేచర్|టెంప్)[^\d]*(\d{2}(?:[.\s](?:point|పాయింట్)\s*)?\d?)/
+  )
+  if (tempMatch) {
+    // Normalise "36 8" or "36 point 8" → "36.8"
+    const raw = tempMatch[1].replace(/\s*(?:point|పాయింట్)\s*/g, '.').replace(/\s+/, '.')
+    result.temperatureC = parseFloat(raw)
+  }
 
-  // Weight: "weight 52", "weight 52.5 kg"
-  const wMatch = lower.match(/(?:weight|బరువు)[^\d]*(\d{2,3}(?:\.\d)?)/)
+  // ── Weight ────────────────────────────────────────────────────────────────
+  // "weight 52", "weight 52.5 kg", "బరువు 52", "వెయిట్ 52"
+  const wMatch = lower.match(/(?:weight|బరువు|వెయిట్)[^\d]*(\d{2,3}(?:\.\d)?)/)
   if (wMatch) result.weightKg = parseFloat(wMatch[1])
 
-  // Pregnancy weeks: "weeks 32", "32 weeks pregnant", "pregnancy 32"
-  const wkMatch = lower.match(/(?:weeks?|pregnant|pregnancy|గర్భం)[^\d]*(\d{1,2})|(\d{1,2})\s*weeks?/)
+  // ── Pregnancy Weeks ───────────────────────────────────────────────────────
+  // "32 weeks", "weeks 32", "pregnancy 32", "గర్భం 32", "32 వారాలు"
+  const wkMatch = lower.match(
+    /(?:weeks?|pregnant|pregnancy|గర్భం|వారాలు|వారం)[^\d]*(\d{1,2})|(\d{1,2})\s*(?:weeks?|వారాలు)/
+  )
   if (wkMatch) result.pregnancyWeeks = parseInt(wkMatch[1] ?? wkMatch[2], 10)
 
-  // Dose: "dose taken", "took dose", "missed dose", "no dose"
-  if (/dose taken|took.{0,10}dose|మందు తీసుకున్నారు/.test(lower)) result.doseTaken = true
-  if (/missed dose|no dose|dose missed|మందు తీసుకోలేదు/.test(lower)) result.doseTaken = false
+  // ── TB Dose ───────────────────────────────────────────────────────────────
+  // Taken: "dose taken", "took dose", "మందు తీసుకున్నారు", "మందు తీసుకున్నా"
+  // Missed: "missed dose", "no dose", "మందు తీసుకోలేదు", "మందు వేయలేదు"
+  if (/dose taken|took.{0,10}dose|yes.{0,5}dose|మందు తీసుకున్న/.test(lower)) result.doseTaken = true
+  if (/missed dose|no dose|dose missed|not taken|మందు తీసుకోలేదు|మందు వేయలేదు/.test(lower)) result.doseTaken = false
 
-  // Symptoms (keyword matching)
-  const symptomMap: Record<string, string> = {
-    'headache': 'SEVERE_HEADACHE',
-    'head ache': 'SEVERE_HEADACHE',
-    'తలనొప్పి': 'SEVERE_HEADACHE',
-    'blurred vision': 'BLURRED_VISION',
-    'మసక': 'BLURRED_VISION',
-    'bleeding': 'BLEEDING',
-    'రక్తస్రావం': 'BLEEDING',
-    'swelling': 'SWELLING',
-    'వాపు': 'SWELLING',
-    'fetal movement': 'REDUCED_FETAL_MOVEMENT',
-    'fever': 'FEVER',
-    'జ్వరం': 'FEVER',
-    'cough': 'COUGH_2_WEEKS',
-    'దగ్గు': 'COUGH_2_WEEKS',
-    'hemoptysis': 'HEMOPTYSIS',
-    'blood cough': 'HEMOPTYSIS',
-    'breathless': 'BREATHLESSNESS',
-    'ఆయాసం': 'BREATHLESSNESS',
-    'weight loss': 'WEIGHT_LOSS',
-    'diarrhoea': 'DIARRHOEA',
-    'diarrhea': 'DIARRHOEA',
-    'విరేచనాలు': 'DIARRHOEA',
-    'rash': 'RASH',
-    'దద్దుర్లు': 'RASH',
-  }
+  // ── Symptoms ──────────────────────────────────────────────────────────────
+  // Each entry: [keyword-regex, symptom-code]
+  const symptomPatterns: [RegExp, string][] = [
+    [/headache|head ache|తలనొప్పి|హెడేక్/, 'SEVERE_HEADACHE'],
+    [/blurred.{0,5}vision|vision.{0,5}blurr|మసక|బ్లర్/, 'BLURRED_VISION'],
+    [/bleeding|రక్తస్రావం|బ్లీడింగ్/, 'BLEEDING'],
+    [/swelling|వాపు|సూజన్/, 'SWELLING'],
+    [/fetal.{0,10}movement|reduced.{0,10}movement|పిండం కదలడం/, 'REDUCED_FETAL_MOVEMENT'],
+    [/\bfever\b|జ్వరం|ఫీవర్/, 'FEVER'],
+    [/\bcough\b|దగ్గు|కఫ్/, 'COUGH_2_WEEKS'],
+    [/hemoptysis|blood.{0,5}cough|రక్తం దగ్గు/, 'HEMOPTYSIS'],
+    [/breathless|shortness.{0,10}breath|ఆయాసం|శ్వాస/, 'BREATHLESSNESS'],
+    [/weight.{0,5}loss|బరువు తగ్గడం/, 'WEIGHT_LOSS'],
+    [/diarrhoe?a|విరేచనాలు|డయేరియా/, 'DIARRHOEA'],
+    [/\brush\b|దద్దుర్లు|రాష్/, 'RASH'],
+  ]
   const found: string[] = []
-  for (const [keyword, code] of Object.entries(symptomMap)) {
-    if (lower.includes(keyword) && !found.includes(code)) found.push(code)
+  for (const [pattern, code] of symptomPatterns) {
+    if (pattern.test(lower) && !found.includes(code)) found.push(code)
   }
   if (found.length > 0) result.symptoms = found
 
@@ -134,7 +142,9 @@ export function useVoiceInput(onResult: (fields: VoiceFields) => void): UseVoice
   const start = useCallback(() => {
     if (!SR) return
     const rec = new SR()
-    rec.lang = 'te-IN'
+    // en-IN gives digit output and handles Telugu-accented English well.
+    // The parser also handles Telugu keywords for bilingual speakers.
+    rec.lang = 'en-IN'
     rec.interimResults = false
     rec.continuous = false
 

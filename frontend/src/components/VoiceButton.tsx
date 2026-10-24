@@ -41,7 +41,12 @@ export function VoiceButton({ voice, className }: Props) {
         </p>
       )}
       {!voice.isListening && !voice.transcript && (
-        <p className="text-xs text-muted">Speak in Telugu or English</p>
+        <p className="max-w-xs text-xs text-muted">
+          Say: <span className="font-medium text-ink">"Temperature 36.8"</span>,{' '}
+          <span className="font-medium text-ink">"BP 140 over 90"</span>,{' '}
+          <span className="font-medium text-ink">"Weight 52"</span>,{' '}
+          <span className="font-medium text-ink">"Dose taken"</span>
+        </p>
       )}
     </div>
   )
