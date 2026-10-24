@@ -86,3 +86,14 @@ The login page shows three quick-login buttons for Sunitha (ASHA), Dr. Kiran (PH
 
 ```
 REFERRED  --[Acknowledge]-->  ACKNOWLEDGED  --[Patient arrived]-->  ARRIVED  --[Close with outcome]-->  CLOSED
+```
+
+If a referral is in REFERRED status, they also see a "Patient already here" button to skip straight to arrived.
+
+**What they cannot do:**
+- Record visits (only ASHAs do that)
+- Register patients
+- See the dashboard
+- Create or edit rules
+
+---
