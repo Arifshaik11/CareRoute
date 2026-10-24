@@ -118,3 +118,13 @@ If a referral is in REFERRED status, they also see a "Patient already here" butt
 - View all patients with full access logs (who viewed/changed each record and when)
 - **Create new rules** (name, code, program, condition clauses, action, priority, deadline, explanation)
 - **Edit existing rules** (change thresholds, priorities, deadlines, explanations)
+- **Toggle rules on/off** (activate or deactivate without deleting)
+- **Fast-forward 48 hours** (demo control: moves all deadlines 48 hours closer and runs escalation, simulating two days passing)
+- **Reset demo data** (wipes and re-seeds all synthetic patients)
+
+**What they cannot do:**
+- Record visits
+- Register patients
+- Update referral status (that's PHC staff's job)
+
+---
