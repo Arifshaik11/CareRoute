@@ -138,3 +138,14 @@ CareRoute follows a standard **three-tier web architecture** with clear separati
 | ASHA       | Due List, Register Patient, Record Visit           |
 | Supervisor | Dashboard, Patients, Referrals, Rules, Rule Editor |
 | Shared     | Login, Patient Detail, Referral Detail             |
+
+### Tech Stack Summary
+
+| Layer      | Technology                                                      |
+|------------|-----------------------------------------------------------------|
+| Frontend   | React 19, TypeScript, Vite, Tailwind CSS, TanStack Query, Axios |
+| Backend    | Spring Boot 3.5, Java 21, Spring Security, Spring Data JPA      |
+| Database   | PostgreSQL 16, Flyway (schema migrations)                       |
+| Auth       | JWT (JJWT 0.12), role-based access control                      |
+| API Docs   | SpringDoc OpenAPI / Swagger UI                                  |
+| Dev Infra  | Docker Compose                                                  |
