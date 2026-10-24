@@ -163,3 +163,22 @@ CareRoute uses three roles enforced at the API level via Spring Security.
 | `ADMIN`      | Full access including user management and audit log                                          |
 
 All endpoints except `/api/auth/login` and `/actuator/health` require a valid JWT bearer token. Role checks are applied per-endpoint using `@PreAuthorize` annotations and a centralised `AccessPolicy` component.
+
+---
+
+## API Endpoints
+
+A full interactive reference is available at `http://localhost:8080/swagger-ui.html` once the backend is running. Key endpoint groups are listed below.
+
+| Group        | Base Path           | Description                                      |
+|--------------|---------------------|--------------------------------------------------|
+| Auth         | `/api/auth`         | Login, token refresh                             |
+| Patients     | `/api/patients`     | Register, search, get by ID                      |
+| Visits       | `/api/visits`       | Record a visit, list visits for a patient        |
+| Referrals    | `/api/referrals`    | Create, update status, list, escalate            |
+| Follow-ups   | `/api/followups`    | Schedule, complete, list due follow-ups          |
+| Rules        | `/api/rules`        | CRUD for clinical rules, evaluate rule set       |
+| Dashboard    | `/api/dashboard`    | Supervisor KPIs and summary metrics              |
+| Meta         | `/api/meta`         | Reference data (villages, facilities, enums)     |
+| Demo         | `/api/demo`         | Seed or reset demo data (supervisor only)        |
+| Health       | `/actuator/health`  | Service health check (public)                    |
