@@ -207,3 +207,14 @@ Key tables:
 | `audit_log`   | Immutable record of key system actions              |
 | `village`     | Reference data for patient locations                |
 | `facility`    | Health facilities for referral routing              |
+
+---
+
+## Security
+
+- **Authentication** — Stateless JWT-based auth. Tokens are issued on login (`/api/auth/login`) and expire after 12 hours by default (configurable via `app.jwt.expiration`).
+- **JWT Secret** — A dev-only default secret is bundled for local use. For any shared or production deployment, set the `JWT_SECRET` environment variable to a base64-encoded secret of at least 32 bytes.
+- **Authorization** — Role-based access control is enforced at the controller layer using Spring Security's `@PreAuthorize` and a centralised `AccessPolicy` component. ASHAs can only access their own patients and visits.
+- **CORS** — Allowed origins are configured via `CORS_ORIGINS` (default: `http://localhost:5173`). Restrict this to your production frontend URL before deploying.
+- **Password Storage** — Passwords are hashed with BCrypt before being stored in the database.
+- **Error Responses** — Stack traces are never included in API error responses (`include-stacktrace: never`).
