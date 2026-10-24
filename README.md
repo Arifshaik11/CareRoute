@@ -218,3 +218,28 @@ Key tables:
 - **CORS** — Allowed origins are configured via `CORS_ORIGINS` (default: `http://localhost:5173`). Restrict this to your production frontend URL before deploying.
 - **Password Storage** — Passwords are hashed with BCrypt before being stored in the database.
 - **Error Responses** — Stack traces are never included in API error responses (`include-stacktrace: never`).
+
+---
+
+## Demo Data
+
+When `DEMO_ENABLED=true` (the default), the backend seeds a realistic set of synthetic data on first startup via `DemoDataSeeder`. This includes:
+
+- Pre-created users for each role with known credentials
+- A set of patients across different villages and health programs
+- Sample visits with symptoms and vitals
+- Active referrals in various lifecycle states
+- Scheduled follow-ups with pending and overdue entries
+- Default clinical rules for the rule engine
+
+**Demo users (default credentials):**
+
+| Username     | Password   | Role         |
+|--------------|------------|--------------|
+| `asha1`      | `password` | `ASHA`       |
+| `supervisor` | `password` | `SUPERVISOR` |
+| `admin`      | `password` | `ADMIN`      |
+
+To reset demo data at any time, call `POST /api/demo/reset` (requires `SUPERVISOR` role or above).
+
+> Demo mode is intended for development and evaluation only. Disable it (`DEMO_ENABLED=false`) for any real deployment.
