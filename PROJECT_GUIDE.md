@@ -248,3 +248,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
    - Priority badge: **HIGH**
    - Outcome: **"Referral sent to PHC"**
    - A note saying the PHC can see this referral now, and if the patient hasn't arrived by the deadline, it will come back to your due list
+8. Click **"View patient"** to see the referral appear in the patient's referral list with status "Referred"
+9. Click **"Back to due list"** - note that Lakshmi's original due task is now completed (the visit fulfilled it)
+
+**What happened:** The MAT_HIGH_BP rule matched (systolic 145 >= 140), creating a HIGH priority referral to Ramapuram PHC with a 48-hour deadline.
+
+---
+
+### Scenario 3: PHC staff processes the referral (full loop)
+
+**Goal:** See how PHC staff receive and work through a referral that an ASHA just created.
