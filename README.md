@@ -64,3 +64,15 @@ cd backend
 | `PORT`          | `8080`                                       | Server port                 |
 | `CORS_ORIGINS`  | `http://localhost:5173`                      | Allowed frontend origin     |
 | `DEMO_ENABLED`  | `true`                                       | Seed demo data on startup   |
+
+---
+
+### 3. Run the Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+- App runs at: `http://localhost:5173`
