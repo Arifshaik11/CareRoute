@@ -108,3 +108,13 @@ If a referral is in REFERRED status, they also see a "Patient already here" butt
 - **Dashboard** - KPIs, referral funnel, village table, active escalations, demo controls
 - **Referrals** - all referrals in the block (read-only, no action buttons)
 - **Patients** - all patients in the block (read-only, with access log showing who viewed each record)
+- **Rules** - list of all follow-up and referral rules, with toggle and edit
+
+**What they can do:**
+- See block-level KPIs: referral completion rate, escalated referrals, overdue follow-ups, visits in last 7 days
+- See the referral funnel: Referred -> Acknowledged -> Arrived -> Closed, showing where patients drop off
+- See a per-village table showing patients, overdue tasks, open referrals, escalations, and completion rate per ASHA
+- See active escalations (referrals that are overdue with the patient not at the facility)
+- View all patients with full access logs (who viewed/changed each record and when)
+- **Create new rules** (name, code, program, condition clauses, action, priority, deadline, explanation)
+- **Edit existing rules** (change thresholds, priorities, deadlines, explanations)
