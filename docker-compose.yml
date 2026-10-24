@@ -7,3 +7,5 @@ services:
       POSTGRES_DB: careroute
       POSTGRES_USER: careroute
       POSTGRES_PASSWORD: careroute
+    ports:
+      - "5432:5432"
