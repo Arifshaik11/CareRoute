@@ -1,1 +1,4 @@
 # CareRoute .gitignore
+
+# Backend
+backend/target/
