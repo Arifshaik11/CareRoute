@@ -238,3 +238,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 5. Enter raised blood pressure:
    - BP: **145** / **92** (above the 140/90 threshold for MAT_HIGH_BP rule)
    - Temperature: **36.8**
+   - Weight: **55**
+   - Pregnancy weeks: leave as estimated
+   - Don't check any symptoms
+6. Click **"Save visit"**
+7. You'll see:
+   - A red card: **"Referral sent to the PHC"** with a warning message about the deadline
+   - Under "Why": the **MAT_HIGH_BP** rule fired, showing "BP recorded as 145/92 mmHg in pregnancy (threshold 140/90). Refer to the PHC for review within 48 hours."
+   - Priority badge: **HIGH**
+   - Outcome: **"Referral sent to PHC"**
+   - A note saying the PHC can see this referral now, and if the patient hasn't arrived by the deadline, it will come back to your due list
