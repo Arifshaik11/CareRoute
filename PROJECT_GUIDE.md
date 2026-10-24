@@ -97,3 +97,14 @@ If a referral is in REFERRED status, they also see a "Patient already here" butt
 - Create or edit rules
 
 ---
+
+### 3. Block Supervisor (supervisor.anil)
+
+**Who they are:** A block-level medical officer who oversees the whole system, monitors performance, and configures the clinical rules.
+
+**Home page:** `/dashboard` - a block-wide overview with KPIs, referral funnel, village breakdown, and active escalations.
+
+**Sidebar / navigation:**
+- **Dashboard** - KPIs, referral funnel, village table, active escalations, demo controls
+- **Referrals** - all referrals in the block (read-only, no action buttons)
+- **Patients** - all patients in the block (read-only, with access log showing who viewed each record)
