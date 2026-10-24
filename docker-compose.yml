@@ -9,3 +9,5 @@ services:
       POSTGRES_PASSWORD: careroute
     ports:
       - "5432:5432"
+    volumes:
+      - careroute-pgdata:/var/lib/postgresql/data
