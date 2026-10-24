@@ -82,3 +82,33 @@ npm run dev
 ## Architecture
 
 CareRoute follows a standard **three-tier web architecture** with clear separation between the frontend, backend API, and database. Communication between tiers is via JSON REST over HTTP, secured with JWT bearer tokens. The schema is fully managed by Flyway migrations so the database is always in a known state on startup.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        Browser / Client                     │
+│              React 19 + TypeScript + Tailwind CSS           │
+│           (Vite · React Router · TanStack Query)            │
+└───────────────────────────┬─────────────────────────────────┘
+                            │ HTTPS / REST (JSON)
+                            │ JWT Bearer Token
+┌───────────────────────────▼─────────────────────────────────┐
+│                      Backend API                            │
+│            Spring Boot 3.5 · Java 21 · Maven                │
+│                                                             │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐ │
+│  │  Auth /  │  │ Patient  │  │ Referral │  │   Rules    │ │
+│  │ Security │  │  Visit   │  │ Follow-up│  │  Engine    │ │
+│  └──────────┘  └──────────┘  └──────────┘  └────────────┘ │
+│                                                             │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐ │
+│  │Dashboard │  │ CarePlan │  │  Audit   │  │  OpenAPI   │ │
+│  │ Service  │  │ Service  │  │   Log    │  │ /Swagger   │ │
+│  └──────────┘  └──────────┘  └──────────┘  └────────────┘ │
+└───────────────────────────┬─────────────────────────────────┘
+                            │ JPA / Flyway
+┌───────────────────────────▼─────────────────────────────────┐
+│                      PostgreSQL 16                          │
+│              Schema managed by Flyway migrations            │
+│                  (Docker · persistent volume)               │
+└─────────────────────────────────────────────────────────────┘
+```
