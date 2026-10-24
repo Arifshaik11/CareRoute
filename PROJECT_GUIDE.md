@@ -378,3 +378,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 5. Now log in as an ASHA and record a visit that would have triggered that rule - nothing happens
 6. Go back and toggle it on - the rule is active again
 
+---
+
+### Scenario 8: Supervisor resets demo data
+
+**Goal:** Start fresh with clean synthetic data after testing.
+
+1. Log in as **supervisor.anil**
+2. Go to the **Dashboard**
+3. Scroll to **"Demo controls"** (bottom right, dashed border)
+4. Click **"Reset synthetic data"**
