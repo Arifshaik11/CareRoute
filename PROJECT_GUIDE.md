@@ -438,3 +438,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 ```
 
 ---
+
+## The Demo Patient: Lakshmi Devi
+
+Lakshmi Devi is a specifically seeded patient designed for live demos:
+
+- **Age:** 24, Female, Maternal care program
+- **Village:** Ramapuram (assigned to ASHA Sunitha)
+- **Pregnancy:** Third trimester (~28 weeks)
+- **History:** Two prior visits, both with normal readings (last BP was 118/76)
+- **Status:** A routine follow-up is due in about 4 hours from app startup
