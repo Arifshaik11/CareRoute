@@ -398,3 +398,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 ## Navigation Map
 
 ### ASHA Worker
+```
+/due                    Due list (home) - prioritised tasks
+  └─ click patient ──> /patients/:id          Patient detail
+  └─ Record visit ────> /patients/:id/visit    Visit form
+  └─ Mark done ───────> (stays on /due, task completes)
+/patients               All patients in your village
+  └─ click patient ──> /patients/:id          Patient detail
+  └─ Register ────────> /patients/new         New patient form
+                        └─ on submit ────────> /patients/:id/visit (record first visit)
+/patients/:id           Patient detail (visits, tasks, referrals, consent)
