@@ -64,3 +64,14 @@ The login page shows three quick-login buttons for Sunitha (ASHA), Dr. Kiran (PH
 ---
 
 ### 2. PHC Staff (phc.kiran)
+
+**Who they are:** Staff at the primary health center. They receive referrals from ASHAs and track patients through the facility.
+
+**Home page:** `/referrals` - incoming referrals to their PHC, with tabs for different statuses.
+
+**Sidebar / navigation:**
+- **Referrals** - incoming referrals with tabs: Awaiting arrival, Escalated, Arrived, Closed, All
+- **Patients** - patients from villages their facility serves (read-only, no "record visit" button)
+
+**What they can do:**
+- View all referrals to their facility, filtered by status using the tab bar
