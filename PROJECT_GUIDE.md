@@ -338,3 +338,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 1. Log in as **supervisor.anil**
 2. Click **"Rules"** in the sidebar
 3. You'll see all 9 starter rules as cards, each showing:
+   - Name and code
+   - Priority badge, action (Refer/Follow up within X hours), program
+   - The condition in plain English: "If systolic_bp >= 160 OR diastolic_bp >= 110"
+   - The explanation shown to staff
+   - A toggle switch (Active/Off)
+   - A pencil icon to edit
+4. Click **"New rule"** (top right)
+5. Fill in:
+   - Name: e.g., "Maternal: low weight"
+   - Code: MAT_LOW_WEIGHT (auto-uppercased)
