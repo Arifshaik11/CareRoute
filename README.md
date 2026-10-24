@@ -76,3 +76,9 @@ npm run dev
 ```
 
 - App runs at: `http://localhost:5173`
+
+---
+
+## Architecture
+
+CareRoute follows a standard **three-tier web architecture** with clear separation between the frontend, backend API, and database. Communication between tiers is via JSON REST over HTTP, secured with JWT bearer tokens. The schema is fully managed by Flyway migrations so the database is always in a known state on startup.
