@@ -408,3 +408,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
   └─ Register ────────> /patients/new         New patient form
                         └─ on submit ────────> /patients/:id/visit (record first visit)
 /patients/:id           Patient detail (visits, tasks, referrals, consent)
+  └─ Record visit ────> /patients/:id/visit
+/referrals              Referrals for your patients (read-only)
+  └─ click ──────────> /referrals/:id          Referral detail (read-only for ASHA)
+```
+
+### PHC Staff
+```
+/referrals              Referrals (home) - incoming to your PHC
+  └─ tabs: Awaiting arrival | Escalated | Arrived | Closed | All
+  └─ click ──────────> /referrals/:id          Referral detail
