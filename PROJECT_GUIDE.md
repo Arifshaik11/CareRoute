@@ -148,3 +148,13 @@ If a referral is in REFERRED status, they also see a "Patient already here" butt
                                                   PHC staff sees it
                                                             │
                                        ┌────────────────────┼────────────────────┐
+                                       ▼                    ▼                    ▼
+                                  Acknowledge         Patient arrived       Close with outcome
+                                                            │
+                                            ┌─────────────┴──────────────┐
+                                            │                            │
+                                     Patient arrives              Patient doesn't arrive
+                                            │                            │
+                                            ▼                            ▼
+                                     Loop closed              ESCALATION fires
+                                    (resolved)                (after deadline)
