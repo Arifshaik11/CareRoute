@@ -288,3 +288,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 1. Log in as **Sunitha K** (ASHA) and record a visit with high BP for Lakshmi Devi (same as Scenario 2) to create a referral
 2. Log out (click the sign-out icon, top right)
 3. Log in as **supervisor.anil** (Block supervisor)
+4. You'll land on the **Dashboard**. Scroll down to the **"Demo controls"** card (bottom right, dashed border)
+5. Click **"Fast-forward 48 hours"** - this simulates 2 days passing:
+   - All open deadlines shift 48 hours closer
+   - The escalation job runs
+   - You'll see a message: "Done - X referral(s) escalated"
+6. Look at the dashboard:
+   - The **"Escalated referrals"** KPI should now show a number (was 0 before)
+   - The **referral funnel** will show the gap (patients referred but not arrived)
+   - The **"Active escalations"** section (bottom left) will list the escalated referral
+7. Log out and log back in as **Sunitha K** (ASHA)
