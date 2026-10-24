@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: careroute-api
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/careroute}
+    username: ${DB_USERNAME:careroute}
+    password: ${DB_PASSWORD:careroute}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate          # Flyway owns the schema; Hibernate only checks it matches
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-stacktrace: never
+
+app:
+  jwt:
+    # Dev-only default. Set JWT_SECRET (base64, >= 32 bytes) for any shared deployment.
+    secret: ${JWT_SECRET:B+/eNhStbTb985wnXxuHTN5UnMA3sGfQbKDdCsftTwsz4tAaPG8HHbk9LxS/OL3O}
+    expiration: PT12H
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+  demo:
+    # Seeds synthetic patients on first start and enables /api/demo endpoints.
+    enabled: ${DEMO_ENABLED:true}
+  escalation:
+    interval-ms: 60000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    com.innovation_matrix.careroute: INFO
