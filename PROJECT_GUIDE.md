@@ -198,3 +198,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 
 ---
 
+## Test Scenarios (Step-by-Step)
+
+### Scenario 1: ASHA records a routine maternal visit (follow-up created)
+
+**Goal:** See how a normal visit creates a follow-up task without triggering a referral.
+
+1. Open http://localhost:5173
+2. Click the **Sunitha K** demo button (ASHA, Ramapuram village)
+3. You land on the **Due List** page. You'll see a greeting "Namaskaram, Sunitha" with three counters (Overdue, Due today, Upcoming)
+4. The due list is sorted: Overdue first, then Due today, then Upcoming
