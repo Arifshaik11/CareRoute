@@ -478,3 +478,13 @@ Base URL: `http://localhost:8080/api`
 | `/auth/login` | POST | None | Login (returns JWT) |
 | `/auth/me` | GET | Any | Get current user |
 | `/meta` | GET | Any | Reference data (programs, symptoms, condition fields) |
+| `/follow-ups/due` | GET | ASHA | Due list for current ASHA |
+| `/follow-ups/{id}/complete` | POST | ASHA | Mark a follow-up done |
+| `/patients` | GET | Any | List patients (scoped by role) |
+| `/patients/{id}` | GET | Any | Patient detail (scoped by role) |
+| `/patients/{id}/visits` | POST | ASHA | Record a visit |
+| `/patients/{id}/access-log` | GET | Supervisor | Access log for a patient |
+| `/patients` | POST | ASHA | Register new patient |
+| `/referrals` | GET | Any | List referrals (scoped by role) |
+| `/referrals/{id}` | GET | Any | Referral detail (scoped by role) |
+| `/referrals/{id}/acknowledge` | POST | PHC | Acknowledge referral |
