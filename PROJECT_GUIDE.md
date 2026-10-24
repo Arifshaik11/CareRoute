@@ -358,3 +358,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
    - Then: "Add a follow-up visit for the ASHA" (FOLLOW_UP)
    - Within (hours): 72
    - Explanation: "Weight recorded as {WEIGHT_KG} kg, below 45 kg. Schedule nutrition counselling visit within 3 days."
+   - Check "Active"
+8. Click **"Save rule"**
+9. You're returned to the Rules list - the new rule appears at the bottom
+10. Now log in as an ASHA and record a visit with low weight for a maternal patient - the new rule should fire
+
+**What happened:** The rule was saved to the database. The next time any ASHA records a visit, the rules engine will evaluate this new rule alongside all active ones. The `{WEIGHT_KG}` placeholder gets replaced with the actual measured value in the explanation shown to staff.
+
+---
+
+### Scenario 7: Supervisor toggles a rule off and on
