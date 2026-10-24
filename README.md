@@ -149,3 +149,17 @@ CareRoute follows a standard **three-tier web architecture** with clear separati
 | Auth       | JWT (JJWT 0.12), role-based access control                      |
 | API Docs   | SpringDoc OpenAPI / Swagger UI                                  |
 | Dev Infra  | Docker Compose                                                  |
+
+---
+
+## Roles & Permissions
+
+CareRoute uses three roles enforced at the API level via Spring Security.
+
+| Role         | Access                                                                                       |
+|--------------|----------------------------------------------------------------------------------------------|
+| `ASHA`       | Register patients, record visits, view own due list, create referrals                        |
+| `SUPERVISOR` | All ASHA access + manage rules, view all patients/referrals, access dashboard, reset demo    |
+| `ADMIN`      | Full access including user management and audit log                                          |
+
+All endpoints except `/api/auth/login` and `/actuator/health` require a valid JWT bearer token. Role checks are applied per-endpoint using `@PreAuthorize` annotations and a centralised `AccessPolicy` component.
