@@ -368,3 +368,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 ---
 
 ### Scenario 7: Supervisor toggles a rule off and on
+
+**Goal:** See how rules can be deactivated without deleting them.
+
+1. Log in as **supervisor.anil**
+2. Go to **Rules**
+3. Find any rule and click the **toggle switch** (right side of the card)
+4. The card fades to 60% opacity and shows "Off"
+5. Now log in as an ASHA and record a visit that would have triggered that rule - nothing happens
+6. Go back and toggle it on - the rule is active again
+
