@@ -2,3 +2,4 @@
 
 # Backend
 backend/target/
+*.class
