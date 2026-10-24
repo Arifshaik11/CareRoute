@@ -20,3 +20,14 @@ The app runs at **http://localhost:5173** (frontend) and talks to the API at **h
 All accounts share the same password: **`demo@123`**
 
 | Username | Name | Role | Scope |
+|---|---|---|---|
+| `asha.sunitha` | Sunitha K | ASHA worker | Ramapuram village |
+| `asha.padma` | Padma R | ASHA worker | Kondapalli village |
+| `asha.rani` | Rani M | ASHA worker | Gollapalli village |
+| `phc.kiran` | Dr. Kiran V | PHC staff | Ramapuram PHC |
+| `supervisor.anil` | Anil P | Block supervisor | Ramapuram Block |
+
+The login page shows three quick-login buttons for Sunitha (ASHA), Dr. Kiran (PHC), and Anil (Supervisor). You can also type any username manually, including `asha.padma` or `asha.rani`.
+
+---
+
