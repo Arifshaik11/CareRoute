@@ -75,3 +75,14 @@ The login page shows three quick-login buttons for Sunitha (ASHA), Dr. Kiran (PH
 
 **What they can do:**
 - View all referrals to their facility, filtered by status using the tab bar
+- Open a referral to see the patient info, reason, timeline, and priority
+- **Acknowledge** a referral (status: REFERRED -> ACKNOWLEDGED) - signals "we're expecting this patient"
+- **Mark patient arrived** (status: ACKNOWLEDGED -> ARRIVED) - confirms the patient reached the facility
+- **Close with outcome** (status: ARRIVED -> CLOSED) - requires an outcome note, completes the referral loop
+- See the referral timeline showing every event (referred, acknowledged, arrived, escalated, closed)
+- See which referrals are overdue (patient hasn't arrived by deadline) and escalated
+
+**The referral lifecycle they manage:**
+
+```
+REFERRED  --[Acknowledge]-->  ACKNOWLEDGED  --[Patient arrived]-->  ARRIVED  --[Close with outcome]-->  CLOSED
