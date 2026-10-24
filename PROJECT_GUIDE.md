@@ -208,3 +208,13 @@ These are the 9 rules seeded by default. The supervisor can edit, toggle, or add
 2. Click the **Sunitha K** demo button (ASHA, Ramapuram village)
 3. You land on the **Due List** page. You'll see a greeting "Namaskaram, Sunitha" with three counters (Overdue, Due today, Upcoming)
 4. The due list is sorted: Overdue first, then Due today, then Upcoming
+5. Click on any patient name in the due list (this opens their patient detail page)
+6. On the patient detail page, click **"Record visit"** (top right button)
+7. On the visit form, enter normal values:
+   - Blood pressure: **118** / **76** (normal for pregnancy)
+   - Temperature: **36.8**
+   - Weight: **55**
+   - Pregnancy weeks: leave as estimated (auto-filled from last visit)
+   - Don't check any symptoms
+8. Click **"Save visit"**
+9. You'll see the **Visit saved** screen showing:
